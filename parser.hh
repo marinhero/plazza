@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Mon Apr 15 21:41:20 2013 xiaoyan zhang
-// Last update Mon Apr 15 23:13:22 2013 xiaoyan zhang
+// Last update Tue Apr 16 13:10:19 2013 xiaoyan zhang
 //
 
 #ifndef PARSER_HH_H_
@@ -28,7 +28,7 @@ public:
   std::list<std::string>	getOrder();
   void		put_order_in_list(std::istream &flow);
   int		skipSpaces(std::istream &flow);
-  int		endFlow(std::istream &flow);
+  int		getEnd(std::istream &flow);
   void		putTailBack(char *s, int n, int size, std::istream &flow);
   int		getType(std::istream &flow);
   int		getSize(std::istream &flow);

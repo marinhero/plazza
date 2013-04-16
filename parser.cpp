@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Tue Apr 16 11:43:27 2013 xiaoyan zhang
+// Last update Tue Apr 16 13:11:20 2013 xiaoyan zhang
 //
 
 #include "parser.hh"
@@ -27,20 +27,19 @@ std::list<std::string>	Order::getOrder()
 
 void		Order::put_order_in_list(std::istream &flow)
 {
-  while (!endFlow(flow))
+  if (!skipSpaces(flow))
     {
-      if (!skipSpaces(flow))
-	{
-	  if (!getType(flow))
-	    throw ;
-	  if (!getSize(flow))
-	    throw ;
-	  if (!getNumber(flow))
-	    throw ;
-	}
-      else
-	flow.get();
+      if (!getType(flow))
+	throw ;
+      if (!getSize(flow))
+	throw ;
+      if (!getNumber(flow))
+	throw ;
+      if (!getEnd(flow))
+	throw ;
     }
+  else
+    flow.get();
 }
 
 int		Order::skipSpaces(std::istream &flow)
@@ -58,13 +57,13 @@ int		Order::skipSpaces(std::istream &flow)
   return (0);
 }
 
-int		Order::endFlow(std::istream &flow)
+int		Order::getEnd(std::istream &flow)
 {
   char		array[1];
 
   skipSpaces(flow);
   flow.read(array, 1);
-  if (array[0] == ';')
+  if (array[0] == '\n')
     {
       _list.push_back(";");
       return (1);
