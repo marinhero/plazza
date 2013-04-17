@@ -1,15 +1,15 @@
 //
-// parser.hh for plazza in /home/zhang_x//c++/project/plazza/plazza
+// Order.hh for plazza in /home/zhang_x//c++/project/plazza/plazza
 // 
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Mon Apr 15 21:41:20 2013 xiaoyan zhang
-// Last update Tue Apr 16 16:20:03 2013 xiaoyan zhang
+// Last update Wed Apr 17 12:56:08 2013 xiaoyan zhang
 //
 
-#ifndef PARSER_HH_H_
-# define PARSER_HH_H_
+#ifndef ORDER_HH_H_
+# define ORDER_HH_H_
 
 #include <iostream>
 #include <string>

@@ -1,14 +1,14 @@
 //
-// parser.cpp for plazza in /home/zhang_x//c++/project/plazza/plazza
+// Order.cpp for plazza in /home/zhang_x//c++/project/plazza/plazza
 // 
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Tue Apr 16 17:13:16 2013 xiaoyan zhang
+// Last update Wed Apr 17 12:56:38 2013 xiaoyan zhang
 //
 
-#include "parser.hh"
+#include "Order.hh"
 
 OrderException::OrderException(std::string const &str) : _what(str)
 {
@@ -62,7 +62,7 @@ int		Order::endFlow(std::istream &_flow)
 
   if (!skipSpaces(_flow))
     {
-      if ((c = _flow.get()) == ';')
+      if ((c = _flow.get()) == '#')
 	{
 	  return (1);
 	}
@@ -108,7 +108,7 @@ int		Order::getSep(std::istream &_flow)
 
   skipSpaces(_flow);
   _flow.read(array, 1);
-  if (array[0] == '\n')
+  if (array[0] == '\n' || array[0] == ';')
     {
       _list.push_back(";");
       return (1);
