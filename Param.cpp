@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Thu Apr 18 15:00:47 2013 xiaoyan zhang
-// Last update Thu Apr 18 17:08:33 2013 xiaoyan zhang
+// Last update Thu Apr 18 17:37:43 2013 xiaoyan zhang
 //
 
 #include "Param.hh"
@@ -51,7 +51,9 @@ int		Param::checkDot(std::string const &str)
     {
       pos = i;
       if (str[i] == '.')
-	return (pos);
+	{
+	  return (pos);
+	}
     }
   return (pos);
 }
@@ -60,14 +62,16 @@ bool		Param::checkMultiplier(std::string const &str)
 {
   int		pos;
 
-  if ((pos = checkDot(str)))
+  if ((pos = checkDot(str)) && pos != (int)str.size() - 1)
     {
       if (str[pos - 1] != '0')
 	return (false);
       return (true);
     }
   else
-    return (checkNumber(str));
+    {
+      return (checkNumber(str));
+    }
 }
 
 bool		Param::checkNumber(std::string const &s)
