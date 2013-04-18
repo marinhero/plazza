@@ -5,22 +5,10 @@
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Thu Apr 18 15:00:47 2013 xiaoyan zhang
-// Last update Thu Apr 18 15:50:25 2013 xiaoyan zhang
+// Last update Thu Apr 18 17:08:33 2013 xiaoyan zhang
 //
 
 #include "Param.hh"
-
-ParamException::ParamException(std::string const &str) : _what(str)
-{
-}
-
-const char	*ParamException::what(void) const throw()
-{
-  return (this->_what.c_str());
-}
-
-ParamException::~ParamException() throw()
-{}
 
 Param::Param(int ac, char **av)
 {
@@ -72,7 +60,7 @@ bool		Param::checkMultiplier(std::string const &str)
 {
   int		pos;
 
-  if (pos = checkDot(str))
+  if ((pos = checkDot(str)))
     {
       if (str[pos - 1] != '0')
 	return (false);

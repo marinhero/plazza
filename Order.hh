@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Mon Apr 15 21:41:20 2013 xiaoyan zhang
-// Last update Wed Apr 17 12:56:08 2013 xiaoyan zhang
+// Last update Thu Apr 18 16:58:01 2013 xiaoyan zhang
 //
 
 #ifndef ORDER_HH_H_
@@ -16,16 +16,7 @@
 #include <list>
 #include <fstream>
 #include <cstring>
-
-class		OrderException : public std::exception
-{
-private:
-  std::string	_what;
-public:
-  OrderException(std::string const &error);
-  virtual const char *what(void) const throw();
-  virtual ~OrderException() throw();
-};
+#include "Exception.hh"
 
 class				Order
 {

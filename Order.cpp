@@ -5,22 +5,10 @@
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Wed Apr 17 12:56:38 2013 xiaoyan zhang
+// Last update Thu Apr 18 16:57:14 2013 xiaoyan zhang
 //
 
 #include "Order.hh"
-
-OrderException::OrderException(std::string const &str) : _what(str)
-{
-}
-
-const char	*OrderException::what(void) const throw()
-{
-  return (this->_what.c_str());
-}
-
-OrderException::~OrderException() throw()
-{}
 
 Order::Order(std::istream &flow) : _flow(flow)
 {

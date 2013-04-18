@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 // 
 // Started on  Thu Apr 18 14:49:35 2013 xiaoyan zhang
-// Last update Thu Apr 18 15:43:01 2013 xiaoyan zhang
+// Last update Thu Apr 18 16:58:19 2013 xiaoyan zhang
 //
 
 #ifndef PARAM_HH_H
@@ -14,16 +14,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-
-class		ParamException : public std::exception
-{
-private:
-  std::string	_what;
-public:
-  ParamException(std::string const &error);
-  virtual const char *what(void) const throw();
-  virtual ~ParamException() throw();
-};
+#include "Exception.hh"
 
 class	Param
 {
