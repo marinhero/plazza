@@ -1,11 +1,11 @@
 //
-// Order.cpp for plazza in /home/zhang_x//c++/project/plazza/plazza
-// 
+// Order.cpp for plazza in /home/ignatiev/Projects/plazza
+//
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
-// 
+//
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Thu Apr 18 16:57:14 2013 xiaoyan zhang
+// Last update Fri Apr 19 19:48:14 2013 ivan ignatiev
 //
 
 #include "Order.hh"
@@ -22,7 +22,7 @@ Order::~Order()
 
 void	Order::parse()
 {
-  this->putOrderInList(_flow);
+  this->putOrderInList();
 }
 
 std::list<std::string>	&Order::getOrder()
@@ -30,71 +30,69 @@ std::list<std::string>	&Order::getOrder()
   return (this->_list);
 }
 
-void		Order::putOrderInList(std::istream &_flow)
+void		Order::putOrderInList()
 {
-  while (!endFlow(_flow))
+  while (!endFlow())
     {
-      if (!skipSpaces(_flow))
-	{
-	  getInstr(_flow);
-	  getSep(_flow);
-	}
-      else
-	_flow.get();
+        if (!skipSpaces())
+        {
+            getInstr();
+            getSep();
+        }
+        else
+            _flow.get();
     }
 }
 
-int		Order::endFlow(std::istream &_flow)
+int		Order::endFlow()
 {
   char		c;
 
-  if (!skipSpaces(_flow))
-    {
-      if ((c = _flow.get()) == '#')
-	{
-	  return (1);
-	}
+  if (!skipSpaces())
+  {
+      if ((c = _flow.get()) == '#' || _flow.fail())
+          return (1);
       _flow.putback(c);
-    }
+  }
   return (0);
 }
 
 
-int		Order::getInstr(std::istream &_flow)
+int		Order::getInstr()
 {
-  if (getType(_flow))
+    if (getType())
     {
-      if (getSize(_flow))
-	{
-	  if (!getNumber(_flow))
-	    return (0);
-	  return (1);
-	}
+        if (getSize())
+        {
+            if (!getNumber())
+                return (0);
+            return (1);
+        }
     }
-  throw (new OrderException("Not found good instruction"));
-  return (0);
+    throw (new OrderException("Not found good instruction"));
+    return (0);
 }
 
-int		Order::skipSpaces(std::istream &_flow)
+int		Order::skipSpaces()
 {
-  char		c;
+    char		c;
 
-  _flow.read(&c, 1);
-  while (c == ' ' || c == '\t')
+    _flow.read(&c, 1);
+    while (c == ' ' || c == '\t')
     {
-      _flow.read(&c, 1);
+        _flow.read(&c, 1);
     }
-  _flow.putback(c);
-  if (c == 10)
-    return (1);
-  return (0);
+    _flow.putback(c);
+    if (c == 10)
+        return (1);
+    return (0);
 }
 
-int		Order::getSep(std::istream &_flow)
+int		Order::getSep()
 {
   char		array[1];
 
-  skipSpaces(_flow);
+  skipSpaces();
   _flow.read(array, 1);
   if (array[0] == '\n' || array[0] == ';')
     {
@@ -105,73 +103,71 @@ int		Order::getSep(std::istream &_flow)
   return (0);
 }
 
-void		Order::putTailBack(char *s, int n, int size, std::istream &_flow)
+void		Order::putTailBack(char *s, int n, int size)
 {
   int		l = size;
 
   for(int i = l - 1; i >= l - n; --i)
-    {
       _flow.putback(s[i]);
-    }
 }
 
-int		Order::getType(std::istream &_flow)
+int		Order::getType()
 {
   std::string	orders[4] = {"regina", "fantasia", "margarita", "americaine"};
   char		array[10];
 
-  skipSpaces(_flow);
+  skipSpaces();
   _flow.read(array, 10);
   for (int i = 0; i < 4; ++i)
     {
-      if (orders[i].compare(0, 10, array, orders[i].size()) == 0)
-	{
-	  _list.push_back(orders[i]);
-	  putTailBack(array, 10 - orders[i].size(), 10, _flow);
-	  return (1);
-	}
+        if (orders[i].compare(0, 10, array, orders[i].size()) == 0)
+        {
+            _list.push_back(orders[i]);
+            putTailBack(array, 10 - orders[i].size(), 10);
+            return (1);
+        }
     }
-  putTailBack(array, 10, 10, _flow);
+  putTailBack(array, 10, 10);
   throw (new OrderException("Not Found Type"));
   return (0);
 }
 
 
-int		Order::getSize(std::istream &_flow)
+int		Order::getSize()
 {
   std::string	sizes[5] = {"S", "M", "L", "XL", "XXL"};
   char		array[3];
 
-  skipSpaces(_flow);
+  skipSpaces();
   _flow.read(array, 3);
   for (int i = 0; i < 5; ++i)
     {
-      if (sizes[i].compare(0, 3, array, sizes[i].size()) == 0)
-	{
-	  _list.push_back(sizes[i]);
-	  putTailBack(array, 3 - sizes[i].size(), 3, _flow);
-	  return (1);
-	}
+        if (sizes[i].compare(0, 3, array, sizes[i].size()) == 0)
+        {
+            _list.push_back(sizes[i]);
+            putTailBack(array, 3 - sizes[i].size(), 3);
+            return (1);
+        }
     }
-  putTailBack(array, 3, 3, _flow);
+  putTailBack(array, 3, 3);
   throw (new OrderException("Not Found Size"));
   return (0);
 }
 
-int		Order::getNumber(std::istream &_flow)
+int		Order::getNumber()
 {
-  if (!getX(_flow))
+  if (!getX())
     return (1);
-  if (!getRealNumber(_flow))
+  if (!getRealNumber())
     return (1);
   return (0);
 }
 
-int		Order::getX(std::istream &_flow)
+int		Order::getX()
 {
   char		array[1];
 
-  skipSpaces(_flow);
+  skipSpaces();
   _flow.read(array, 1);
   if (array[0] == 'x')
     {
@@ -183,21 +179,21 @@ int		Order::getX(std::istream &_flow)
   return (0);
 }
 
-int		Order::getRealNumber(std::istream &_flow)
+int		Order::getRealNumber()
 {
   std::string num = "";
   char c;
 
-  skipSpaces(_flow);
+  skipSpaces();
   _flow.read(&c, 1);
   if (c >= '1' && c <= '9')
-    num += c;
+      num += c;
   else
-    {
+  {
       _flow.putback(c);
       throw (new OrderException("First number is not good"));
       return (0);
-    }
+  }
   _flow.read(&c, 1);
   while (c >= '0' && c <= '9')
   {
@@ -206,10 +202,10 @@ int		Order::getRealNumber(std::istream &_flow)
   }
   _flow.putback(c);
   if (num.size() > 0 && num != "-")
-    {
+  {
       _list.push_back(num);
       return (1);
-    }
+  }
   throw (new OrderException("Not A Good Number"));
   return (0);
 }
