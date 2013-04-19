@@ -11,6 +11,8 @@
 #ifndef PIZZA_H_
 # define PIZZA_H_
 
+# include "Debug.hh"
+
 class Pizza
 {
     public:
@@ -41,6 +43,7 @@ class Pizza
         ~Pizza(void);
     private:
         Pizza(void);
+
         TypePizza   type_;
         TaillePizza size_;
 };

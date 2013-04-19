@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:07:45 2013 ivan ignatiev
-// Last update Tue Apr 16 15:13:32 2013 ivan ignatiev
+// Last update Fri Apr 19 18:56:18 2013 ivan ignatiev
 //
 
 #include "Pizza.hh"
@@ -16,18 +16,19 @@ Pizza::Pizza(void)
 
 Pizza::~Pizza(void)
 {
+    TRACE(Pizza::~Pizza, "Pizza destroy");
 }
 
 Pizza::Pizza(Pizza::TypePizza type, Pizza::TaillePizza size)
     : type_(type), size_(size)
 {
-
+    TRACE(Pizza::Pizza, "Pizza create");
 }
 
 Pizza::Pizza(Pizza const &pizza)
     : type_(pizza.getType()), size_(pizza.getSize())
 {
-
+    TRACE(Pizza::Pizza, "Pizza create by copy constructor");
 }
 
 Pizza const &Pizza::operator=(Pizza const &pizza)
