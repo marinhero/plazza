@@ -1,18 +1,18 @@
 //
-// main.cpp for plazza in /home/hero/Dropbox/EPITECH/II/C++/plazza
+// main.cpp for plazza in /home/hero/Dropbox/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:31:22 2013 Marin Alcaraz
-// Last update Thu Apr 18 16:12:49 2013 xiaoyan zhang
+// Last update Sat Apr 20 00:42:15 2013 Marin Alcaraz
 //
 
-#include "reception.hh"
+#include "Reception.hh"
 
 int     main()
 {
   Reception plazza;
-  
+
   plazza.display();
 }

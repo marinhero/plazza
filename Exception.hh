@@ -1,11 +1,11 @@
 //
-// Exception.hh for plazza in /home/zhang_x//c++/project/plazza/plazza
-// 
+// Exception.hh for plazza in /home/hero/Dropbox/plazza
+//
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
-// 
+//
 // Started on  Thu Apr 18 16:48:09 2013 xiaoyan zhang
-// Last update Thu Apr 18 16:53:29 2013 xiaoyan zhang
+// Last update Sat Apr 20 00:23:25 2013 Marin Alcaraz
 //
 
 #ifndef EXCEPTION_HH_H_
@@ -36,6 +36,13 @@ class		ParamException : public Exception
 public:
   ParamException(std::string const &error) throw();
   virtual ~ParamException() throw();
+};
+
+class		BadFileException : public Exception
+{
+public:
+  BadFileException(std::string const &error) throw();
+  virtual ~BadFileException() throw();
 };
 
 #endif

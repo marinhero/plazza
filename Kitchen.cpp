@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 14:20:17 2013 ivan ignatiev
-// Last update Sat Apr 20 14:16:20 2013 ivan ignatiev
+// Last update Sat Apr 20 14:19:13 2013 ivan ignatiev
 //
 
 #include "Kitchen.hh"

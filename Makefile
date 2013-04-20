@@ -1,31 +1,33 @@
 ##
-## Makefile for plazza in /home/zhang_x//c++/project/plazza/plazza
-## 
+## Makefile for plazza in /home/hero/Dropbox/plazza
+##
 ## Made by xiaoyan zhang
 ## Login   <zhang_x@epitech.net>
-## 
+##
 ## Started on  Thu Apr 18 17:02:53 2013 xiaoyan zhang
-## Last update Thu Apr 18 17:07:33 2013 xiaoyan zhang
+## Last update Sat Apr 20 11:27:27 2013 Marin Alcaraz
 ##
 
-SRC		= Exception.cpp \
-		  Param.cpp \
-		  ParamUnitTest.cpp 
+SRC			= 		Exception.cpp 	\
+			 	 	Reception.cpp 	\
+			  		Graphics.cpp 	\
+			  		Order.cpp 		\
+			  		main.cpp
 
-OBJ		= $(SRC:.cpp=.o)
+OBJ			= $(SRC:.cpp=.o)
 
 CPPFLAGS	= -W -Wall -Werror -Wextra
 
-CC		= g++
+CC			= g++
 
-NAME		= plazza
+NAME		= the_plazza
 
-RM		= rm -f
+RM			= rm -f
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) -o $(NAME)
+	$(CC) -lncurses $(OBJ) -o $(NAME)
 
 clean:
 	$(RM) $(OBJ)
