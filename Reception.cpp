@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Sat Apr 20 17:16:03 2013 Marin Alcaraz
+// Last update Sat Apr 20 18:51:32 2013 Marin Alcaraz
 //
 
 #include "Reception.hh"
@@ -27,6 +27,9 @@ void    Reception::display()
     while (1)
     {
         win.read_order();
+        win.update();
+        win.display_kitchens();
+        win.display_orders();
         win.update();
     }
     win.exit_screen_mode();

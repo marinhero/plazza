@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Fri Apr 19 23:54:54 2013 Marin Alcaraz
-// Last update Sat Apr 20 17:26:15 2013 Marin Alcaraz
+// Last update Sat Apr 20 20:44:41 2013 Marin Alcaraz
 //
 
 #ifndef GRAPHICS_H
@@ -38,13 +38,18 @@ class   Graphics
     public:
         Graphics(std::string);
         ~Graphics();
+        void    init_wins(void);
+        void    init_panels(void);
+        void    init_scroll(void);
         void    display_menu(void) const;
         void    output(int, const std::string) const;
         void    read_order(void) const;
-        void    display_widgets(std::vector<Kitchen>) const;
+        void    display_kitchens() const;
+        void    display_orders() const;
         void    update(void) const;
         void    exit_screen_mode(void) const;
         void    wipe(char *) const; //Sorru it is necessary
+        void    clear(int);
 };
 
 #endif /* GRAPHICS_H */
