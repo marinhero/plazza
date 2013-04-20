@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Sat Apr 20 19:14:01 2013 ivan ignatiev
+// Last update Sat Apr 20 19:28:00 2013 ivan ignatiev
 //
 
 #include "Order.hh"
@@ -111,16 +111,30 @@ void		Order::putTailBack(char *s, int n, int size)
       _flow.putback(s[i]);
 }
 
+char    *Order::lowerCase(char *s, int size)
+{
+    for (int i = 0; i < size; ++i)
+    {
+        if (s[i] >= 'A' && s[i] <= 'Z')
+            s[i] = (s[i] - 'A') + 'a';
+    }
+    return (s);
+}
+
 int		Order::getType()
 {
   std::string	orders[4] = {"regina", "fantasia", "margarita", "americaine"};
   char		array[10];
+  char      cmparray[10];
 
   skipSpaces();
   _flow.read(array, 10);
+  putTailBack(array, 10, 10);
+ _flow.read(cmparray, 10);
+
   for (int i = 0; i < 4; ++i)
     {
-        if (orders[i].compare(0, 10, array, orders[i].size()) == 0)
+        if (orders[i].compare(0, 10, lowerCase(cmparray, 10), orders[i].size()) == 0)
         {
             _list.push_back(orders[i]);
             putTailBack(array, 10 - orders[i].size(), 10);
