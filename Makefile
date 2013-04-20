@@ -5,13 +5,15 @@
 ## Login   <zhang_x@epitech.net>
 ##
 ## Started on  Thu Apr 18 17:02:53 2013 xiaoyan zhang
-## Last update Sat Apr 20 13:29:45 2013 Marin Alcaraz
+## Last update Sun Apr 21 00:17:18 2013 Marin Alcaraz
 ##
 
-SRC			= 		Exception.cpp 	\
-			 	 	Reception.cpp 	\
-			  		Graphics.cpp 	\
-			  		Order.cpp 		\
+SRC			= 		Exception.cpp 			\
+			 	 	Reception.cpp 			\
+			  		Graphics.cpp 			\
+			  		Order.cpp 				\
+			  		Pizza.cpp 				\
+			  		PizzaFactory.cpp 		\
 			  		main.cpp
 
 OBJ			= $(SRC:.cpp=.o)

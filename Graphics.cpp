@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Sat Apr 20 00:03:39 2013 Marin Alcaraz
-// Last update Sat Apr 20 20:46:16 2013 Marin Alcaraz
+// Last update Sun Apr 21 00:38:45 2013 Marin Alcaraz
 //
 
 #include "Graphics.hh"
@@ -18,7 +18,7 @@ Graphics::Graphics(std::string n)
     this->init_wins();
     this->init_panels();
     this->init_scroll();
-    this->output(KITCHENS, "\t\tKITCHEN STATUS\n\n\n");
+    this->output(KITCHENS, "\t\t\tKITCHEN STATUS\n\n\n");
     this->output(ORDERS, "\tORDER STATUS\n\n\n");
 }
 
@@ -94,7 +94,7 @@ void    Graphics::wipe(char *buf) const
     }
 }
 
-void    Graphics::read_order() const
+int    Graphics::read_order() const
 {
     char    order[1024];
 
@@ -102,29 +102,27 @@ void    Graphics::read_order() const
     this->output(MENU, "pizza_prompt> ");
     wscanw(my_wins[MENU], "%[^\t]", order);
     std::string orderstr(order);
-    std::transform(orderstr.begin(), orderstr.end(), orderstr.begin(), ::tolower);
     if (orderstr.compare("quit") == 0)
         this->exit_screen_mode();
-    refresh();
     if (orderstr.empty())
-        return ;
+        return (-1);
     orderstr = orderstr + ";";
     std::istringstream input(orderstr);
-    Order   items(input);
     try
     {
-        items.parse();
+        Order   items(input);
         this->output(MENU, "Thank you! Your order is being processed");
-        this->update();
+        return (items.getOrderNumber());
     }
     catch (OrderException *e)
     {
         this->output(MENU, "Error: ");
         this->output(MENU, e->what());
         this->output(MENU, "\n");
-        this->update();
+        return (-1);
     }
     this->update();
+    return(0);
 }
 
 void    Graphics::display_kitchens() const

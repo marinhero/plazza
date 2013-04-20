@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Sat Apr 20 18:51:32 2013 Marin Alcaraz
+// Last update Sun Apr 21 00:37:40 2013 Marin Alcaraz
 //
 
 #include "Reception.hh"
@@ -19,15 +19,23 @@ Reception::~Reception()
 {
 }
 
-void    Reception::display()
+void    Reception::load_balancer()
 {
-    Graphics win("plazza");
+
+}
+
+void    Reception::in_business() const
+{
+    int                 t_id;
+    Graphics            win("plazza");
+    std::vector<int>    commandsids;
 
     win.display_menu();
     while (1)
     {
-        win.read_order();
-        win.update();
+        t_id = win.read_order();
+        if (t_id != -1)
+            commandsids.push_back(t_id);
         win.display_kitchens();
         win.display_orders();
         win.update();

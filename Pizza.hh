@@ -60,15 +60,15 @@ class Pizza
         virtual ingr_stlist_t const &getIngr(void) const = 0;
         virtual Pizza &clone(void) const = 0;
 
-        ~Pizza(void);
+        virtual ~Pizza(void);
     private:
         Pizza(void);
         void        init();
 
         int         cooktime_;
-        int         ordernum_;
         TypePizza   type_;
         TaillePizza size_;
+        int         ordernum_;
 };
 
 class Margarita : public Pizza
