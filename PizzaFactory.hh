@@ -34,7 +34,7 @@ class PizzaFactory
 
         static void learnSize(std::string const &size, Pizza::TaillePizza);
         static void learnPizza(Pizza &);
-        static Pizza &createPizza(std::string const &type, std::string const &size);
+        static Pizza &createPizza(std::string const &type, std::string const &size, int);
         static ingr_stlist_t const &ingrList(void);
 
         static void forget(void);

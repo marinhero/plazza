@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sat Apr 20 15:04:46 2013 ivan ignatiev
-// Last update Sat Apr 20 17:30:07 2013 ivan ignatiev
+// Last update Sat Apr 20 18:50:35 2013 ivan ignatiev
 //
 
 # include "PizzaFactory.hh"
@@ -14,6 +14,8 @@ int                                         PizzaFactory::factory_count_ = 0;
 std::map<std::string, Pizza *>               PizzaFactory::pizzas_;
 std::map<std::string, Pizza::TaillePizza>   PizzaFactory::sizes_;
 ingr_stlist_t                               PizzaFactory::ingrs_;
+
+static  PizzaFactory    pizza_factory;
 
 PizzaFactory::PizzaFactory(void)
 {
@@ -79,16 +81,19 @@ void PizzaFactory::learnSize(std::string const &size, Pizza::TaillePizza realsiz
         PizzaFactory::sizes_[size] = realsize;
 }
 
-Pizza &PizzaFactory::createPizza(std::string const &type, std::string const &size)
+Pizza &PizzaFactory::createPizza(std::string const &type, std::string const &size, int ordernum)
 {
     if (PizzaFactory::pizzas_.find(type) == PizzaFactory::pizzas_.end())
         throw new std::exception();
     if (PizzaFactory::sizes_.find(size) == PizzaFactory::sizes_.end())
         throw new std::exception();
-    return (PizzaFactory::pizzas_[type]->clone(PizzaFactory::sizes_[size]));
+    Pizza &pizza = PizzaFactory::pizzas_[type]->clone(PizzaFactory::sizes_[size]);
+    pizza.setOrderNum(ordernum);
+    return (pizza);
 }
 
 ingr_stlist_t   const   &PizzaFactory::ingrList(void)
 {
     return (PizzaFactory::ingrs_);
 }
+

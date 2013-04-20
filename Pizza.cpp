@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:07:45 2013 ivan ignatiev
-// Last update Sat Apr 20 17:38:53 2013 ivan ignatiev
+// Last update Sat Apr 20 18:49:43 2013 ivan ignatiev
 //
 
 #include "Pizza.hh"
@@ -72,6 +72,11 @@ int Pizza::getCookTime(void) const
     return (this->cooktime_);
 }
 
+int Pizza::getOrderNum(void) const
+{
+    return (this->ordernum_);
+}
+
 std::string const &Pizza::getStrSize(void) const
 {
     return (Pizza::sizes_[this->size_]);
@@ -91,6 +96,18 @@ void Pizza::setSize(Pizza::TaillePizza size)
 {
     this->size_ = size;
 }
+
+void Pizza::setOrderNum(int ordernum)
+{
+    this->ordernum_ = ordernum;
+}
+
+std::ostream &operator<<(std::ostream &ost, Pizza const &pizza)
+{
+    ost << pizza.getStrType() << " " << pizza.getStrSize() << " " << pizza.getOrderNum();
+    return (ost);
+}
+
 
 
 /* Margarita */

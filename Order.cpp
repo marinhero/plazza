@@ -1,11 +1,11 @@
 //
-// Order.cpp for plazza in /home/hero/Dropbox/plazza
+// Order.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Sat Apr 20 17:28:45 2013 Marin Alcaraz
+// Last update Sat Apr 20 19:28:00 2013 ivan ignatiev
 //
 
 #include "Order.hh"
@@ -25,7 +25,7 @@ void	Order::parse()
   this->putOrderInList();
 }
 
-std::list<std::string>	&Order::getOrder()
+std::list<std::string> const	&Order::getOrder() const
 {
   return (this->_list);
 }
@@ -50,7 +50,7 @@ int		Order::endFlow()
 
   if (!skipSpaces())
   {
-      if ((c = _flow.get()) == '#' || _flow.fail())
+      if ((c = _flow.get()) == '#' || _flow.fail() || _flow.eof())
           return (1);
       _flow.putback(c);
   }
@@ -111,16 +111,30 @@ void		Order::putTailBack(char *s, int n, int size)
       _flow.putback(s[i]);
 }
 
+char    *Order::lowerCase(char *s, int size)
+{
+    for (int i = 0; i < size; ++i)
+    {
+        if (s[i] >= 'A' && s[i] <= 'Z')
+            s[i] = (s[i] - 'A') + 'a';
+    }
+    return (s);
+}
+
 int		Order::getType()
 {
   std::string	orders[4] = {"regina", "fantasia", "margarita", "americaine"};
   char		array[10];
+  char      cmparray[10];
 
   skipSpaces();
   _flow.read(array, 10);
+  putTailBack(array, 10, 10);
+ _flow.read(cmparray, 10);
+
   for (int i = 0; i < 4; ++i)
     {
-        if (orders[i].compare(0, 10, array, orders[i].size()) == 0)
+        if (orders[i].compare(0, 10, lowerCase(cmparray, 10), orders[i].size()) == 0)
         {
             _list.push_back(orders[i]);
             putTailBack(array, 10 - orders[i].size(), 10);
@@ -135,7 +149,7 @@ int		Order::getType()
 
 int		Order::getSize()
 {
-  std::string	sizes[5] = {"s", "m", "l", "xl", "xxl"};
+  std::string	sizes[5] = {"S", "M", "L", "XL", "XXL"};
   char		array[3];
 
   skipSpaces();

@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:41:20 2013 xiaoyan zhang
-// Last update Fri Apr 19 19:34:12 2013 ivan ignatiev
+// Last update Sat Apr 20 19:28:01 2013 ivan ignatiev
 //
 
 #ifndef ORDER_HH_H_
@@ -29,6 +29,7 @@ private:
   int		getInstr();
   int		getSep();
   void		putTailBack(char *s, int n, int size);
+  char      *lowerCase(char *s, int size);
   int		getType();
   int		getSize();
   int		getNumber();
@@ -37,7 +38,7 @@ private:
 public:
   Order(std::istream &flow);
   ~Order();
-  std::list<std::string>	&getOrder();
+  std::list<std::string>	const &getOrder() const;
   void				parse();
   void				dump() const;
 };

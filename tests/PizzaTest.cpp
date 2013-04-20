@@ -5,13 +5,11 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:13:50 2013 ivan ignatiev
-// Last update Sat Apr 20 17:42:20 2013 ivan ignatiev
+// Last update Sat Apr 20 18:17:16 2013 ivan ignatiev
 //
 
 #include "PizzaFactory.hh"
 #include "tests/test.h"
-
-static  PizzaFactory    pizza_factory;
 
 int     main(int argc, char **argv)
 {
