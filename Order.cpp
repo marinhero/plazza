@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Sat Apr 20 01:53:54 2013 Marin Alcaraz
+// Last update Sat Apr 20 17:28:45 2013 Marin Alcaraz
 //
 
 #include "Order.hh"
@@ -135,7 +135,7 @@ int		Order::getType()
 
 int		Order::getSize()
 {
-  std::string	sizes[5] = {"S", "M", "L", "XL", "XXL"};
+  std::string	sizes[5] = {"s", "m", "l", "xl", "xxl"};
   char		array[3];
 
   skipSpaces();
