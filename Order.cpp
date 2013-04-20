@@ -5,7 +5,7 @@
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Sun Apr 21 00:02:41 2013 ivan ignatiev
+// Last update Sun Apr 21 00:30:36 2013 ivan ignatiev
 //
 
 #include "Order.hh"
@@ -51,7 +51,7 @@ int   Order::getPizzaCount() const
 
 Pizza   &Order::popPizza(void)
 {
-    Pizza &pizza = this->_v.back()->clone(this->_v.back()->getSize());
+    Pizza &pizza = this->_v.back()->clone();
     delete this->_v.back();
     this->_v.pop_back();
     return (pizza);
@@ -89,6 +89,11 @@ void    Order::makePizzaList(void)
           this->_v.push_back(&PizzaFactory::createPizza(type, size, this->num_));
         }
     }
+}
+
+int     Order::getOrderNumber(void) const
+{
+    return (this->num_);
 }
 
 int		Order::endFlow()

@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:13:50 2013 ivan ignatiev
-// Last update Sat Apr 20 23:57:58 2013 ivan ignatiev
+// Last update Sun Apr 21 00:10:36 2013 ivan ignatiev
 //
 
 
@@ -18,6 +18,13 @@ int     main(int argc, char **argv)
     {
         Order &order = * new Order(std::cin);
         order.dump();
+        std::cout << "Proccess order " << order.getOrderNumber() << " : " << std::endl;
+        while (order.getPizzaCount())
+        {
+            Pizza &pizza = order.popPizza();
+            std::cout << "Pizza goes to cook: " << pizza << std::endl;
+            delete &pizza;
+        }
         delete &order;
     }
     catch (std::exception *e)

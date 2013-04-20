@@ -41,7 +41,7 @@ class Pizza
 
         static std::map<TaillePizza, std::string> sizes_;
 
-        Pizza(TypePizza type, TaillePizza size);
+        Pizza(TypePizza type, TaillePizza size, int ordernum);
         Pizza(Pizza const &pizza);
         virtual Pizza const &operator=(Pizza const &pizza);
 
@@ -58,7 +58,7 @@ class Pizza
         void        setOrderNum(int);
 
         virtual ingr_stlist_t const &getIngr(void) const = 0;
-        virtual Pizza &clone(TaillePizza) const = 0;
+        virtual Pizza &clone(void) const = 0;
 
         ~Pizza(void);
     private:
@@ -80,12 +80,12 @@ class Margarita : public Pizza
         Margarita(void);
         void                initIngr(void);
     public:
-        Margarita(Pizza::TaillePizza size);
+        Margarita(Pizza::TaillePizza size, int ordernum = 0);
         Margarita(Margarita const &);
 
         virtual std::string const &getStrType(void) const;
         virtual ingr_stlist_t   const &getIngr(void) const;
-        virtual Pizza           &clone(Pizza::TaillePizza) const;
+        virtual Pizza           &clone(void) const;
 
         ~Margarita(void);
 };
@@ -99,12 +99,12 @@ class Regina : public Pizza
         Regina(void);
         void                initIngr(void);
     public:
-        Regina(Pizza::TaillePizza size);
+        Regina(Pizza::TaillePizza size, int ordernum = 0);
         Regina(Regina const &);
 
         virtual std::string const &getStrType(void) const;
         virtual ingr_stlist_t   const &getIngr(void) const;
-        virtual Pizza           &clone(Pizza::TaillePizza) const;
+        virtual Pizza           &clone(void) const;
 
         ~Regina(void);
 };
@@ -118,12 +118,12 @@ class Americana : public Pizza
         Americana(void);
         void                initIngr(void);
     public:
-        Americana(Pizza::TaillePizza size);
+        Americana(Pizza::TaillePizza size, int ordernum = 0);
         Americana(Americana const &);
 
         virtual std::string const &getStrType(void) const;
         virtual ingr_stlist_t   const &getIngr(void) const;
-        virtual Pizza           &clone(Pizza::TaillePizza) const;
+        virtual Pizza           &clone(void) const;
 
         ~Americana(void);
 };
@@ -137,12 +137,12 @@ class Fantasia : public Pizza
         Fantasia(void);
         void                initIngr(void);
     public:
-        Fantasia(Pizza::TaillePizza size);
+        Fantasia(Pizza::TaillePizza size, int ordernum = 0);
         Fantasia(Fantasia const &);
 
         virtual std::string const &getStrType(void) const;
         virtual ingr_stlist_t   const &getIngr(void) const;
-        virtual Pizza           &clone(Pizza::TaillePizza) const;
+        virtual Pizza           &clone(void) const;
 
         ~Fantasia(void);
 };

@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:07:45 2013 ivan ignatiev
-// Last update Sat Apr 20 18:49:43 2013 ivan ignatiev
+// Last update Sun Apr 21 00:32:14 2013 ivan ignatiev
 //
 
 #include "Pizza.hh"
@@ -21,15 +21,15 @@ Pizza::~Pizza(void)
     TRACE(Pizza::~Pizza, "Pizza destroy");
 }
 
-Pizza::Pizza(Pizza::TypePizza type, Pizza::TaillePizza size)
-    : type_(type), size_(size)
+Pizza::Pizza(Pizza::TypePizza type, Pizza::TaillePizza size, int ordernum = 0)
+    : type_(type), size_(size), ordernum_(ordernum)
 {
     TRACE(Pizza::Pizza, "Pizza create");
     this->init();
 }
 
 Pizza::Pizza(Pizza const &pizza)
-    : type_(pizza.getType()), size_(pizza.getSize())
+    : type_(pizza.getType()), size_(pizza.getSize()), ordernum_(pizza.getOrderNum())
 {
     TRACE(Pizza::Pizza, "Pizza create by copy constructor");
     this->init();
@@ -41,6 +41,7 @@ Pizza const &Pizza::operator=(Pizza const &pizza)
     {
         this->type_ = pizza.getType();
         this->size_ = pizza.getSize();
+        this->ordernum_ = pizza.getOrderNum();
     }
     return (*this);
 }
@@ -108,8 +109,6 @@ std::ostream &operator<<(std::ostream &ost, Pizza const &pizza)
     return (ost);
 }
 
-
-
 /* Margarita */
 
 Margarita::Margarita(void)
@@ -117,8 +116,8 @@ Margarita::Margarita(void)
 {
 }
 
-Margarita::Margarita(Pizza::TaillePizza size)
-    : Pizza(Pizza::Margarita, size) , strtype_("margarita")
+Margarita::Margarita(Pizza::TaillePizza size, int ordernum)
+    : Pizza(Pizza::Margarita, size, ordernum) , strtype_("margarita")
 {
     this->initIngr();
 }
@@ -152,10 +151,10 @@ ingr_stlist_t const &Margarita::getIngr(void) const
     return (this->ingrs_);
 }
 
-Pizza & Margarita::clone(Pizza::TaillePizza size) const
+Pizza & Margarita::clone(void) const
 {
     TRACE(Margarita::clone, "Make new Margarita");
-    return (* new Margarita(size));
+    return (* new Margarita(this->getSize(), this->getOrderNum()));
 }
 
 /* Regina */
@@ -165,8 +164,8 @@ Regina::Regina(void)
 {
 }
 
-Regina::Regina(Pizza::TaillePizza size)
-    : Pizza(Pizza::Regina, size) , strtype_("regina")
+Regina::Regina(Pizza::TaillePizza size, int ordernum)
+    : Pizza(Pizza::Regina, size, ordernum) , strtype_("regina")
 {
     this->initIngr();
 }
@@ -202,10 +201,10 @@ ingr_stlist_t const &Regina::getIngr(void) const
     return (this->ingrs_);
 }
 
-Pizza & Regina::clone(Pizza::TaillePizza size) const
+Pizza & Regina::clone(void) const
 {
     TRACE(Regina::clone, "Make new Regina");
-    return (* new Regina(size));
+    return (* new Regina(this->getSize(), this->getOrderNum()));
 }
 
 /* Americana */
@@ -215,8 +214,8 @@ Americana::Americana(void)
 {
 }
 
-Americana::Americana(Pizza::TaillePizza size)
-    : Pizza(Pizza::Americaine, size) , strtype_("americana")
+Americana::Americana(Pizza::TaillePizza size, int ordernum)
+    : Pizza(Pizza::Americaine, size, ordernum) , strtype_("americana")
 {
     this->initIngr();
 }
@@ -252,10 +251,10 @@ ingr_stlist_t const &Americana::getIngr(void) const
     return (this->ingrs_);
 }
 
-Pizza & Americana::clone(Pizza::TaillePizza size) const
+Pizza & Americana::clone(void) const
 {
     TRACE(Americana::clone, "Make new Americana");
-    return (* new Americana(size));
+    return (* new Americana(this->getSize(), this->getOrderNum()));
 }
 
 /* Fantasia */
@@ -265,8 +264,8 @@ Fantasia::Fantasia(void)
 {
 }
 
-Fantasia::Fantasia(Pizza::TaillePizza size)
-    : Pizza(Pizza::Fantasia, size) , strtype_("fantasia")
+Fantasia::Fantasia(Pizza::TaillePizza size, int ordernum)
+    : Pizza(Pizza::Fantasia, size, ordernum) , strtype_("fantasia")
 {
     this->initIngr();
 }
@@ -302,9 +301,9 @@ ingr_stlist_t const &Fantasia::getIngr(void) const
     return (this->ingrs_);
 }
 
-Pizza & Fantasia::clone(Pizza::TaillePizza size) const
+Pizza & Fantasia::clone(void) const
 {
     TRACE(Fantasia::clone, "Make new Fantasia");
-    return (* new Fantasia(size));
+    return (* new Fantasia(this->getSize(), this->getOrderNum()));
 }
 

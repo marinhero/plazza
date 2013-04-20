@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sat Apr 20 15:04:46 2013 ivan ignatiev
-// Last update Sat Apr 20 18:50:35 2013 ivan ignatiev
+// Last update Sun Apr 21 00:17:32 2013 ivan ignatiev
 //
 
 # include "PizzaFactory.hh"
@@ -24,8 +24,6 @@ PizzaFactory::PizzaFactory(void)
     ++factory_count_;
     PizzaFactory::learn();
 }
-
-
 
 PizzaFactory::PizzaFactory(PizzaFactory const &)
 {
@@ -87,7 +85,8 @@ Pizza &PizzaFactory::createPizza(std::string const &type, std::string const &siz
         throw new std::exception();
     if (PizzaFactory::sizes_.find(size) == PizzaFactory::sizes_.end())
         throw new std::exception();
-    Pizza &pizza = PizzaFactory::pizzas_[type]->clone(PizzaFactory::sizes_[size]);
+    Pizza &pizza = PizzaFactory::pizzas_[type]->clone();
+    pizza.setSize(PizzaFactory::sizes_[size]);
     pizza.setOrderNum(ordernum);
     return (pizza);
 }
