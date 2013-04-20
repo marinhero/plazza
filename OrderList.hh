@@ -1,43 +1,29 @@
 //
-// OrderList.hh for plazza in /home/zhang_x//c++/project/plazza/plazza
+// OrderList.hh for plazza in /home/zhang_x//plazza
 // 
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
 // 
-// Started on  Wed Apr 17 12:58:58 2013 xiaoyan zhang
-// Last update Wed Apr 17 17:09:29 2013 xiaoyan zhang
+// Started on  Sat Apr 20 13:17:03 2013 xiaoyan zhang
+// Last update Sat Apr 20 18:02:29 2013 xiaoyan zhang
 //
 
-#ifndef ORDERLIST_HH_H
-# define ORDERLIST_HH_H
+#ifndef ORDERLIST_HH_H_
+# define ORDERLIST_HH_H_
 
-#include "Order.hh"
-#include "Ingredient.hh"
+#include <iostream>
+#include <string>
+#include <list>
+#include <vector>
+#include "PizzaFactory.hh"
 
 class	OrderList
 {
-  std::list<std::string>	_list;
-  std::string			_type;
-  std::list<std::string>	_ingredient;
-  std::string			_size;
-  std::string			_number;
-  int				_time;
-  int				_multi;
-  int				_cookTimes;
-
+  std::vector<Pizza &>	_v;
 public:
-  OrderList(std::list<std::string> const &list, int multi);
+  OrderList(std::list<std::string> const &list);
   ~OrderList();
-  const std::string			&getType() const;
-  const std::list<std::string>		&getIngredient() const;
-  int					&getSize() const;
-  const std::string			&getNumber() const;
-  int					getCookTimes() const;
-  void					setType();
-  void					setIngredient();
-  void					setSize();
-  void					setNumber();
-  void					setCookTime();
+  Pizza	&popPizza();
 };
 
 #endif
