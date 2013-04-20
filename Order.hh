@@ -5,25 +5,29 @@
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:41:20 2013 xiaoyan zhang
-// Last update Sat Apr 20 19:28:01 2013 ivan ignatiev
+// Last update Sat Apr 20 23:57:23 2013 ivan ignatiev
 //
 
 #ifndef ORDER_HH_H_
 # define ORDER_HH_H_
 
-#include <iostream>
-#include <string>
-#include <list>
+# include <iostream>
+# include <string>
+# include <vector>
+# include <sstream>
 
-#include "Exception.hh"
+# include "PizzaFactory.hh"
+# include "Exception.hh"
 
 class				Order
 {
 private:
-  std::list<std::string>	    _list;
+  std::vector<std::string>	    _list;
   std::istream			        &_flow;
+  static int                    ordernum_;
+  int                           num_;
+  std::vector<Pizza *>	        _v;
 
-  void		putOrderInList();
   int		skipSpaces();
   int		endFlow();
   int		getInstr();
@@ -35,12 +39,21 @@ private:
   int		getNumber();
   int		getX();
   int		getRealNumber();
+  void      parse();
+  void      makePizzaList(void);
+
+  Order(void);
+  Order(Order const &);
+  Order &operator=(Order const &);
 public:
   Order(std::istream &flow);
-  ~Order();
-  std::list<std::string>	const &getOrder() const;
-  void				parse();
-  void				dump() const;
+  ~Order(void);
+
+  void				dump(void) const;
+  int               getPizzaCount(void) const;
+  int               getOrderNumber(void) const;
+
+  Pizza	&popPizza();
 };
 
 #endif

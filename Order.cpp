@@ -5,34 +5,61 @@
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Sat Apr 20 19:28:00 2013 ivan ignatiev
+// Last update Sun Apr 21 00:02:41 2013 ivan ignatiev
 //
 
 #include "Order.hh"
 
+int             Order::ordernum_ = 0;
+
 Order::Order(std::istream &flow) : _flow(flow)
 {
-  if (flow.bad())
-    throw (new OrderException("Bad input stream"));
+    if (flow.bad())
+        throw (new OrderException("Bad input stream"));
+
+    this->num_ =  ++Order::ordernum_;
+    this->parse();
+    this->makePizzaList();
 }
 
-Order::~Order()
+Order::Order(void) : _flow(* new std::istringstream())
 {
+}
+
+Order &Order::operator=(Order const &)
+{
+    return (*this);
+}
+
+Order::Order(Order const &) : _flow(* new std::istringstream())
+{
+}
+
+Order::~Order(void)
+{
+    while (!this->_v.empty())
+    {
+        delete this->_v.back();
+        this->_v.pop_back();
+    }
+}
+
+int   Order::getPizzaCount() const
+{
+    return (this->_v.size());
+}
+
+Pizza   &Order::popPizza(void)
+{
+    Pizza &pizza = this->_v.back()->clone(this->_v.back()->getSize());
+    delete this->_v.back();
+    this->_v.pop_back();
+    return (pizza);
 }
 
 void	Order::parse()
 {
-  this->putOrderInList();
-}
-
-std::list<std::string> const	&Order::getOrder() const
-{
-  return (this->_list);
-}
-
-void		Order::putOrderInList()
-{
-  while (!endFlow())
+    while (!endFlow())
     {
         if (!skipSpaces())
         {
@@ -41,6 +68,26 @@ void		Order::putOrderInList()
         }
         else
             _flow.get();
+    }
+}
+
+void    Order::makePizzaList(void)
+{
+  for (std::vector<std::string>::const_iterator it = _list.begin(); it != _list.end(); ++it)
+    {
+        std::string type = *it;
+        ++it;
+        std::string size = *it;
+        ++it;
+        ++it;
+        std::stringstream strtoint(*it);
+        ++it;
+        int count;
+        strtoint >> count;
+        for (int i = 0; i < count; ++i)
+        {
+          this->_v.push_back(&PizzaFactory::createPizza(type, size, this->num_));
+        }
     }
 }
 
@@ -226,6 +273,6 @@ int		Order::getRealNumber()
 
 void		Order::dump() const
 {
-  for(std::list<std::string>::const_iterator it = _list.begin(); it != _list.end(); ++it)
-    std::cout << "'" << *it << "'" <<  std::endl;
+  for(std::vector<Pizza *>::const_iterator it = _v.begin(); it != _v.end(); ++it)
+    std::cout << **it <<  std::endl;
 }
