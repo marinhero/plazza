@@ -1,14 +1,14 @@
 //
-// reception.cpp for plazza in /home/hero/Dropbox/EPITECH/II/C++/plazza
+// Reception.cpp for plazza in /home/hero/Dropbox/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Wed Apr 17 16:11:06 2013 Marin Alcaraz
+// Last update Sat Apr 20 01:35:16 2013 Marin Alcaraz
 //
 
-#include "reception.hh"
+#include "Reception.hh"
 
 
 Reception::Reception()
@@ -21,31 +21,15 @@ Reception::~Reception()
 
 void    Reception::display()
 {
-    char    order[1024];
+    Graphics win("Menu");
 
-    initscr();
-    printw("-----------------------------------\n");
-    printw("|           The Plaza             |\n");
-    printw("|                                 |\n");
-    printw("|   PIZZA               SIZE      |\n");
-    printw("|                                 |\n");
-    printw("|                                 |\n");
-    printw("| Regina            S M L XL XXL  |\n");
-    printw("| Fantasia          S M L XL XXL  |\n");
-    printw("| Margarita         S M L XL XXL  |\n");
-    printw("| Americaine        S M L XL XXL  |\n");
-    printw("|                                 |\n");
-    printw("|                                 |\n");
-    printw("|                                 |\n");
-    printw("|  Special price for Epitech!     |\n");
-    printw("|                                 |\n");
-    printw("|  What would you like to order?  |\n");
-    printw("|                                 |\n");
-    printw("-----------------------------------\n");
-    refresh();
-    printw("pizza_prompt> ");
-    scanw(" %s", order);
-    refresh();
-    getch();
-    endwin();
+    win.init_screen_mode();
+    win.display_menu();
+    while (1)
+    {
+        win.update();
+        win.read_order();
+        win.update();
+    }
+    win.exit_screen_mode();
 }
