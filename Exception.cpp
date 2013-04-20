@@ -1,11 +1,11 @@
 //
-// Exception.cpp for plazza in /home/zhang_x//c++/project/plazza/plazza
-// 
+// Exception.cpp for plazza in /home/hero/Dropbox/plazza
+//
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
-// 
+//
 // Started on  Thu Apr 18 16:53:45 2013 xiaoyan zhang
-// Last update Thu Apr 18 17:01:19 2013 xiaoyan zhang
+// Last update Sat Apr 20 00:50:56 2013 Marin Alcaraz
 //
 
 #include "Exception.hh"
@@ -34,4 +34,11 @@ OrderException::OrderException(std::string const &msg) throw(): Exception(msg)
 }
 
 OrderException::~OrderException() throw()
+{}
+
+BadFileException::BadFileException(std::string const &msg) throw(): Exception(msg)
+{
+}
+
+BadFileException::~BadFileException() throw()
 {}

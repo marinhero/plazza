@@ -1,11 +1,11 @@
 //
-// Kitchen.cpp for plazza in /home/ignatiev/Projects/plazza
+// Kitchen.cpp for plazza in /home/hero/Dropbox/plazza
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 14:20:17 2013 ivan ignatiev
-// Last update Fri Apr 19 20:16:52 2013 ivan ignatiev
+// Last update Fri Apr 19 19:22:06 2013 Marin Alcaraz
 //
 
 #include "Kitchen.hh"

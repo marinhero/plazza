@@ -1,16 +1,16 @@
 ##
-## Makefile for plazza in /home/zhang_x//c++/project/plazza/plazza
-## 
+## Makefile for plazza in /home/hero/Dropbox/plazza
+##
 ## Made by xiaoyan zhang
 ## Login   <zhang_x@epitech.net>
-## 
+##
 ## Started on  Thu Apr 18 17:02:53 2013 xiaoyan zhang
-## Last update Thu Apr 18 17:07:33 2013 xiaoyan zhang
+## Last update Fri Apr 19 17:08:48 2013 Marin Alcaraz
 ##
 
 SRC		= Exception.cpp \
-		  Param.cpp \
-		  ParamUnitTest.cpp 
+		  Param.cpp 	\
+		  ParamUnitTest.cpp
 
 OBJ		= $(SRC:.cpp=.o)
 
