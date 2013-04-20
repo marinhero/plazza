@@ -11,6 +11,7 @@
 #ifndef PIZZA_H_
 # define PIZZA_H_
 
+# include <iostream>
 # include <string>
 # include <map>
 
@@ -46,6 +47,7 @@ class Pizza
 
         TypePizza   getType(void) const;
         TaillePizza getSize(void) const;
+        int         getOrderNum(void) const;
         int         getCookTime(void) const;
         virtual std::string const &getStrType(void) const = 0;
         std::string const &getStrSize(void) const;
@@ -53,6 +55,7 @@ class Pizza
         void        setCookTime(int);
         void        setType(TypePizza);
         void        setSize(TaillePizza);
+        void        setOrderNum(int);
 
         virtual ingr_stlist_t const &getIngr(void) const = 0;
         virtual Pizza &clone(TaillePizza) const = 0;
@@ -63,6 +66,7 @@ class Pizza
         void        init();
 
         int         cooktime_;
+        int         ordernum_;
         TypePizza   type_;
         TaillePizza size_;
 };
@@ -142,5 +146,7 @@ class Fantasia : public Pizza
 
         ~Fantasia(void);
 };
+
+std::ostream &operator<<(std::ostream &ost, Pizza const &);
 
 #endif /* !PIZZA_H_ */

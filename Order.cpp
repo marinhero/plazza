@@ -1,11 +1,11 @@
 //
-// Order.cpp for plazza in /home/hero/Dropbox/plazza
+// Order.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Mon Apr 15 21:40:58 2013 xiaoyan zhang
-// Last update Sat Apr 20 01:53:54 2013 Marin Alcaraz
+// Last update Sat Apr 20 18:30:27 2013 ivan ignatiev
 //
 
 #include "Order.hh"
@@ -25,7 +25,7 @@ void	Order::parse()
   this->putOrderInList();
 }
 
-std::list<std::string>	&Order::getOrder()
+std::list<std::string> const	&Order::getOrder() const
 {
   return (this->_list);
 }
@@ -50,7 +50,7 @@ int		Order::endFlow()
 
   if (!skipSpaces())
   {
-      if ((c = _flow.get()) == '#' || _flow.fail())
+      if ((c = _flow.get()) == '#' || _flow.fail() || _flow.eof())
           return (1);
       _flow.putback(c);
   }
