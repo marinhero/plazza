@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Sat Apr 20 00:03:39 2013 Marin Alcaraz
-// Last update Sat Apr 20 02:08:19 2013 Marin Alcaraz
+// Last update Sat Apr 20 11:25:57 2013 Marin Alcaraz
 //
 
 #include "Graphics.hh"
@@ -62,7 +62,7 @@ void    Graphics::read_order() const
     printw("pizza_prompt> ");
     scanw("%[^\t]", order);
     std::string orderstr(order);
-    if (orderstr.compare("quit") == "")
+    if (orderstr.compare("quit") == 0)
         this->exit_screen_mode();
     orderstr = orderstr + ";";
     std::istringstream input(orderstr);
@@ -86,11 +86,12 @@ void    Graphics::read_order() const
 
 void    Graphics::display_widgets(std::vector<Kitchen> v) const
 {
+    (void) v;
     return ;
 }
 
 void    Graphics::exit_screen_mode(void) const
 {
     endwin();
-    return ;
+    exit(EXIT_SUCCESS);
 }
