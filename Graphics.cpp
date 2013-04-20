@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Sat Apr 20 00:03:39 2013 Marin Alcaraz
-// Last update Sat Apr 20 17:30:33 2013 Marin Alcaraz
+// Last update Sat Apr 20 20:46:16 2013 Marin Alcaraz
 //
 
 #include "Graphics.hh"
@@ -15,19 +15,37 @@ Graphics::Graphics(std::string n)
 	initscr();
     cbreak();
     this->name = n;
-	this->my_wins[MENU] = newwin(40, 40, 0, 0);
-	this->my_wins[KITCHENS] = newwin(40, 80, 0, 42);
-	this->my_wins[ORDERS] = newwin(40, 30, 0, 124);
-    box(my_wins[1], 0, 0);
-    box(my_wins[2], 0, 0);
-	my_panels[MENU] = new_panel(my_wins[MENU]);
-	my_panels[KITCHENS] = new_panel(my_wins[KITCHENS]);
-	my_panels[ORDERS] = new_panel(my_wins[ORDERS]);
+    this->init_wins();
+    this->init_panels();
+    this->init_scroll();
+    this->output(KITCHENS, "\t\tKITCHEN STATUS\n\n\n");
+    this->output(ORDERS, "\tORDER STATUS\n\n\n");
 }
 
 Graphics::~Graphics()
 {
 
+}
+
+void    Graphics::init_wins()
+{
+	this->my_wins[MENU] = newwin(55, 40, 0, 0);
+	this->my_wins[KITCHENS] = newwin(55, 80, 0, 42);
+	this->my_wins[ORDERS] = newwin(55, 30, 0, 124);
+}
+
+void    Graphics::init_panels()
+{
+	my_panels[MENU] = new_panel(my_wins[MENU]);
+	my_panels[KITCHENS] = new_panel(my_wins[KITCHENS]);
+	my_panels[ORDERS] = new_panel(my_wins[ORDERS]);
+}
+
+void    Graphics::init_scroll()
+{
+    scrollok(my_wins[MENU], true);
+    scrollok(my_wins[KITCHENS], true);
+    scrollok(my_wins[ORDERS], true);
 }
 
 void    Graphics::update(void) const
@@ -109,10 +127,23 @@ void    Graphics::read_order() const
     this->update();
 }
 
-void    Graphics::display_widgets(std::vector<Kitchen> v) const
+void    Graphics::display_kitchens() const
 {
-    (void) v;
+    this->output(KITCHENS, "\tKitchen #1 status: OK Resources: OK Cooks: Busy\n");
+    this->output(KITCHENS, "\tKitchen #2 status: OK Resources: OK Cooks: Busy\n");
+    this->output(KITCHENS, "\tKitchen #3 status: OK Resources: OK Cooks: Busy\n");
     return ;
+}
+
+void    Graphics::display_orders() const
+{
+    this->output(ORDERS, "Order #1 ready\n");
+    this->output(ORDERS, "Order #2 ready\n");
+}
+
+void    Graphics::clear(int w)
+{
+    wclear(my_wins[w]);
 }
 
 void    Graphics::exit_screen_mode(void) const
