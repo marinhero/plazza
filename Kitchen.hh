@@ -30,6 +30,7 @@ class Kitchen
     private:
         int                 pid_;
         int                 cookscount_;
+        int                 cooktime_;
 
         cooks_stlist_t          cooks_status_;
         ingr_stlist_t             ingr_status_;
@@ -38,11 +39,13 @@ class Kitchen
         Kitchen(Kitchen const &kitchen);
         Kitchen const &operator=(Kitchen const &);
     public:
-        Kitchen(int cookscount);
+        Kitchen(int cookscount, int cooktime);
 
         bool    acceptPizza(Pizza const &);
         int     librePlaces(void) const;
         int     getCooksCount(void) const;
+
+        void    update(void);
 
         cooks_stlist_t const    &getCookStatus(void) const;
         ingr_stlist_t const     &getStockStatus(void) const;

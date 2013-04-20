@@ -1,11 +1,11 @@
 //
-// Kitchen.cpp for plazza in /home/hero/Dropbox/plazza
+// Kitchen.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 14:20:17 2013 ivan ignatiev
-// Last update Fri Apr 19 19:22:06 2013 Marin Alcaraz
+// Last update Sat Apr 20 14:19:13 2013 ivan ignatiev
 //
 
 #include "Kitchen.hh"
@@ -25,8 +25,8 @@ Kitchen::Kitchen(Kitchen const &kitchen)
 
 }
 
-Kitchen::Kitchen(int cookscount)
- : cookscount_(cookscount)
+Kitchen::Kitchen(int cookscount, int cooktime)
+ : cookscount_(cookscount), cooktime_(cooktime_)
 {
     for (int i = 0; i < cookscount; ++i)
         this->cooks_status_.push_back(rand() % 2);
@@ -65,6 +65,11 @@ ingr_stlist_t const     &Kitchen::getStockStatus(void) const
 int Kitchen::getCooksCount(void) const
 {
     return (this->cookscount_);
+}
+
+void Kitchen::update(void)
+{
+
 }
 
 
