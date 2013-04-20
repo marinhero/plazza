@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:13:50 2013 ivan ignatiev
-// Last update Fri Apr 19 20:17:15 2013 ivan ignatiev
+// Last update Sat Apr 20 14:16:52 2013 ivan ignatiev
 //
 
 #include "Kitchen.hh"
@@ -13,6 +13,6 @@
 
 int     main(int argc, char **argv)
 {
-    Kitchen(5);
+    Kitchen(5, 2);
     return (EXIT_SUCCESS);
 }

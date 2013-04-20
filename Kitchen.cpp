@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 14:20:17 2013 ivan ignatiev
-// Last update Fri Apr 19 20:16:52 2013 ivan ignatiev
+// Last update Sat Apr 20 14:16:20 2013 ivan ignatiev
 //
 
 #include "Kitchen.hh"
@@ -25,8 +25,8 @@ Kitchen::Kitchen(Kitchen const &kitchen)
 
 }
 
-Kitchen::Kitchen(int cookscount)
- : cookscount_(cookscount)
+Kitchen::Kitchen(int cookscount, int cooktime)
+ : cookscount_(cookscount), cooktime_(cooktime_)
 {
     for (int i = 0; i < cookscount; ++i)
         this->cooks_status_.push_back(rand() % 2);
@@ -65,6 +65,11 @@ ingr_stlist_t const     &Kitchen::getStockStatus(void) const
 int Kitchen::getCooksCount(void) const
 {
     return (this->cookscount_);
+}
+
+void Kitchen::update(void)
+{
+
 }
 
 
