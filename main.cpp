@@ -5,22 +5,38 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:31:22 2013 Marin Alcaraz
-// Last update Sun Apr 21 20:11:28 2013 Marin Alcaraz
+// Last update Sun Apr 21 21:08:46 2013 Marin Alcaraz
 //
 
 #include "Reception.hh"
 
-int     main()
+template <class T>
+T   parse(const char *in)
 {
+    T out;
+    std::string     numstr(in);
 
-  Reception plazza;
+    std::stringstream ss(numstr);
+    ss >> out;
+    return (out);
+}
 
-  try
+int     main(int ac, char **av)
+{
+  if (ac != 4)
+       std::cout << "Usage: ./plazza mult cooks refresh_rate" << std::endl;
+  else
   {
-      plazza.in_business();
-  }
-  catch (std::exception *e)
-  {
-      std::cout << e->what() << std::endl;
+      Reception plazza(parse<int>(av[1]),
+                        parse<int>(av[2]), parse<int>(av[3]));
+
+      try
+      {
+          plazza.in_business();
+      }
+      catch (std::exception *e)
+      {
+          std::cout << e->what() << std::endl;
+      }
   }
 }

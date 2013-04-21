@@ -5,13 +5,14 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Sun Apr 21 20:26:14 2013 Marin Alcaraz
+// Last update Sun Apr 21 21:07:14 2013 Marin Alcaraz
 //
 
 #include "Reception.hh"
 
 
-Reception::Reception()
+Reception::Reception(int m, int c, int r) : multiplier(m),
+cooks(c), refresh(r)
 {
 }
 
@@ -22,14 +23,13 @@ Reception::~Reception()
 int    Reception::load_balancer(Pizza const &p)
 {
    int  i;
-   KitchenInspector                 inspector;
-   std::vector<Kitchen>::iterator   it;
+   std::vector<Kitchen*>::iterator   it;
 
    i = 0;
    it = this->kitchens.begin();
    while (it != this->kitchens.end())
    {
-       if (this->kitchens[i].acceptPizza(p))
+       if (this->kitchens[i]->acceptPizza(p))
            return (i);
        i = i + 1;
        it++;
@@ -49,10 +49,14 @@ int    Reception::request_order(std::string orderstr, Graphics &win)
         {
             Pizza &pizza = items.popPizza();
             if ((kid = this->load_balancer(pizza)) == -1)
+            {
                 win.output(MENU, "Kitchens Busy, creating new kitchen\n");
+                Kitchen *k = new Kitchen(cooks, multiplier,  refresh);
+                kitchens.push_back(k);
+            }
             else
                 win.output(MENU, "Pizza sent to kitchen\n");
-            //delete &pizza;
+
         }
         return (items.getOrderNumber());
     }

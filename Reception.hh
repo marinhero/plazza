@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:24:50 2013 Marin Alcaraz
-// Last update Sun Apr 21 14:38:30 2013 Marin Alcaraz
+// Last update Sun Apr 21 21:07:24 2013 Marin Alcaraz
 //
 
 #ifndef RECEPTION_HH
@@ -19,10 +19,13 @@
 class   Reception
 {
     private:
-        std::vector<Kitchen>    kitchens;
+        std::vector<Kitchen*>    kitchens;
+        int                     multiplier;
+        int                     cooks;
+        int                     refresh;
 
     public:
-        Reception();
+        Reception(int, int, int);
         ~Reception();
         void    in_business(void);
         int     request_order(std::string, Graphics&);
