@@ -1,11 +1,11 @@
 //
-// Graphics.cpp for plazza in /home/hero/Dropbox/plazza
+// Graphics.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Sun Apr 21 01:33:26 2013 Marin Alcaraz
-// Last update Sun Apr 21 13:20:48 2013 Marin Alcaraz
+// Last update Sun Apr 21 19:56:41 2013 ivan ignatiev
 //
 
 #include "Graphics.hh"
@@ -97,10 +97,11 @@ void    Graphics::wipe(char *buf) const
 std::string    Graphics::read_order() const
 {
     char    order[1024];
+    char    fmt[100] = "%[^\t]";
 
     this->wipe(order);
     this->output(MENU, "pizza_prompt> ");
-    wscanw(my_wins[MENU], "%[^\t]", order);
+    wscanw(my_wins[MENU], fmt, order);
     std::string orderstr(order);
     if (orderstr.compare("quit") == 0)
         this->exit_screen_mode();

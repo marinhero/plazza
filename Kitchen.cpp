@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 14:20:17 2013 ivan ignatiev
-// Last update Sun Apr 21 19:46:51 2013 ivan ignatiev
+// Last update Sun Apr 21 19:51:46 2013 ivan ignatiev
 //
 
 #include "Kitchen.hh"
@@ -49,7 +49,7 @@ bool    Kitchen::acceptPizza(Pizza const &pizza)
 {
     if (this->pid_ == 0)
     {
-        if (this->kitchenpizzas_.size() > (this->cookscount_ * 2))
+        if (this->kitchenpizzas_.size() > this->cookscount_)
             return (false);
         try
         {
