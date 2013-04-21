@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Sun Apr 21 14:53:11 2013 Marin Alcaraz
+// Last update Sun Apr 21 20:26:14 2013 Marin Alcaraz
 //
 
 #include "Reception.hh"
@@ -22,7 +22,8 @@ Reception::~Reception()
 int    Reception::load_balancer(Pizza const &p)
 {
    int  i;
-   std::vector<Kitchen>::iterator it;
+   KitchenInspector                 inspector;
+   std::vector<Kitchen>::iterator   it;
 
    i = 0;
    it = this->kitchens.begin();
