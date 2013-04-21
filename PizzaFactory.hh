@@ -21,9 +21,9 @@ class PizzaFactory
 {
     private:
         static int factory_count_;
-        static std::map<std::string, Pizza *>                pizzas_;
-        static std::map<std::string, Pizza::TaillePizza>    sizes_;
-        static ingr_stlist_t                                ingrs_;
+        static std::map<std::string, Pizza *>                   pizzas_;
+        static std::map<std::string, Pizza::TaillePizza>        sizes_;
+        static ingr_stlist_t                                    ingrs_;
 
         PizzaFactory(PizzaFactory const &);
         PizzaFactory &operator=(PizzaFactory const &);

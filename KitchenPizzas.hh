@@ -13,18 +13,16 @@
 
 # include <vector>
 
-# include "Pizza.hh"
+# include "PizzaFactory.hh"
 # include "ResourceLock.hh"
 
 class KitchenPizzas
 {
     private:
-        int     size_;
+        Mutex                   pizzalock_;
+        std::vector<Pizza *>    pizzas_;
 
-        Mutex   pizzalock_;
-        std::vector<Pizza> pizzas_;
-
-        KitchenPizzas &operator=(KitchenPizzas const &);
+        KitchenPizzas           &operator=(KitchenPizzas const &);
         KitchenPizzas(KitchenPizzas const &);
     public:
         KitchenPizzas(void);
