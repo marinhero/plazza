@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Wed Apr 17 21:42:02 2013 ivan ignatiev
-// Last update Fri Apr 19 20:23:34 2013 ivan ignatiev
+// Last update Sun Apr 21 18:47:53 2013 ivan ignatiev
 //
 
 #include "ResourceLock.hh"
@@ -13,15 +13,13 @@
 Mutex::Mutex(void)
 {
     TRACE(Mutex::Mutex, "Mutex init");
-    this->mutex_ = new pthread_mutex_t;
-    pthread_mutex_init(this->mutex_, NULL);
+    pthread_mutex_init(&this->mutex_, NULL);
 }
 
 Mutex::~Mutex(void)
 {
     TRACE(Mutex::~Mutex, "Mutex destroyed");
-    pthread_mutex_destroy(this->mutex_);
-    delete this->mutex_;
+    pthread_mutex_destroy(&this->mutex_);
 }
 
 Mutex::Mutex(Mutex const &)
@@ -36,13 +34,42 @@ Mutex &Mutex::operator=(Mutex const &)
 void Mutex::lock(void)
 {
     TRACE(Mutex::lock, "Mutex lock");
-    pthread_mutex_lock(this->mutex_);
+    pthread_mutex_lock(&this->mutex_);
 }
 
 void Mutex::unlock(void)
 {
     TRACE(Mutex::unlock, "Mutex unlock");
-    pthread_mutex_unlock(this->mutex_);
+    pthread_mutex_unlock(&this->mutex_);
+}
+
+CondVariable::CondVariable(void)
+{
+    pthread_cond_init(&this->cond_, NULL);
+    pthread_mutex_init(&this->mutex_, NULL);
+}
+
+CondVariable::~CondVariable(void)
+{
+    pthread_cond_destroy(&this->cond_);
+    pthread_mutex_destroy(&this->mutex_);
+}
+
+void    CondVariable::freeaze(void)
+{
+    pthread_mutex_lock(&this->mutex_);
+    pthread_cond_wait(&this->cond_, &this->mutex_);
+    pthread_mutex_unlock(&this->mutex_);
+}
+
+void    CondVariable::unfreaze_one(void)
+{
+    pthread_cond_signal(&this->cond_);
+}
+
+void    CondVariable::unfreeze_all(void)
+{
+    pthread_cond_broadcast(&this->cond_);
 }
 
 MutexScopeLock::MutexScopeLock(void)

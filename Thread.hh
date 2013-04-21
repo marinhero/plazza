@@ -20,6 +20,7 @@ class IThreaded
 {
     public:
         virtual void *run(void) = 0;
+        virtual ~IThreaded();
 };
 
 class Thread

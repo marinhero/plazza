@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sun Apr 21 11:55:01 2013 ivan ignatiev
-// Last update Sun Apr 21 13:34:47 2013 ivan ignatiev
+// Last update Sun Apr 21 18:31:34 2013 ivan ignatiev
 //
 
 # include "KitchenStock.hh"
@@ -66,6 +66,7 @@ void            *KitchenStock::run(void)
 {
     while (this->threadrun_)
     {
+        TRACE(KitchenStock::run, "Regenerate kitchen stock + 1");
         this->stocklock_.lock();
         ingr_stlist_t::iterator       it = this->ingrs_.begin();
         for (;it != this->ingrs_.end(); ++it)

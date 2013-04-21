@@ -18,7 +18,7 @@
 class Mutex
 {
     private:
-        pthread_mutex_t     *mutex_;
+        pthread_mutex_t     mutex_;
 
         Mutex(Mutex const &mutex);
         Mutex &operator=(Mutex const &mutex);
@@ -31,13 +31,18 @@ class Mutex
         ~Mutex(void);
 };
 
-/*class   CondVariable
+class   CondVariable
 {
     private:
+        pthread_cond_t      cond_;
+        pthread_mutex_t     mutex_;
     public:
         CondVariable(void);
+        void            freeaze(void);
+        void            unfreaze_one(void);
+        void            unfreeze_all(void);
         ~CondVariable(void);
-};*/
+};
 
 class MutexScopeLock
 {

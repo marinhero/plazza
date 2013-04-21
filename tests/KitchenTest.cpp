@@ -5,14 +5,14 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:13:50 2013 ivan ignatiev
-// Last update Sun Apr 21 15:51:12 2013 ivan ignatiev
+// Last update Sun Apr 21 19:48:30 2013 ivan ignatiev
 //
 
 #include "Kitchen.hh"
 #include "tests/test.h"
 # include <vector>
 
-int     main(int argc, char **argv)
+int     main(void)
 {
     std::vector<Kitchen *> kitchen;
 
@@ -21,10 +21,16 @@ int     main(int argc, char **argv)
         kitchen.push_back(new Kitchen(5, 2));
     }
 
+    Pizza &pizza =  PizzaFactory::createPizza("margarita", "XXL", 0);
+    int     i = 0;
+    while (!kitchen[i]->acceptPizza(pizza) && i < 10) ++i;
+    delete &pizza;
+
     while (!kitchen.empty())
     {
         delete kitchen.back();
         kitchen.pop_back();
     }
+
     return (EXIT_SUCCESS);
 }

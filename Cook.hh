@@ -20,6 +20,8 @@
 class Cook : public IThreaded
 {
     private:
+        static CondVariable     cond_;
+
         int             cooktime_;
         bool            busy_;
         bool            threadrun_;
@@ -36,11 +38,11 @@ class Cook : public IThreaded
 
         void            *run(void);
 
-        void            cookPizza(void);
+        static void     cookPizza(void);
         bool            isBusy(void) const;
         Pizza   const   &getCookingPizza(void) const;
 
-        ~Cook(void);
+        virtual ~Cook(void);
 };
 
 #endif /* !COOK_H_ */

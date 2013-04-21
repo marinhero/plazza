@@ -11,19 +11,10 @@
 #ifndef KITCHEN_HH_
 # define KITCHEN_HH_
 
-# include <cstdlib>
-# include <time.h>
-
-# include <map>
 # include <vector>
 # include <string>
 
-# include "ResourceLock.hh"
-# include "Pizza.hh"
-# include "KitchenPizzas.hh"
-
-typedef std::vector<bool>           cooks_stlist_t;
-typedef std::map<std::string, int>  ingr_stlist_t;
+# include "Cook.hh"
 
 class Kitchen
 {
@@ -32,8 +23,10 @@ class Kitchen
         int                 cookscount_;
         int                 cooktime_;
 
-        cooks_stlist_t          cooks_status_;
-        ingr_stlist_t             ingr_status_;
+        KitchenPizzas       kitchenpizzas_;
+        KitchenStock        kitchenstock_;
+
+        std::vector<Cook *> cooks_;
 
         Kitchen(void);
         Kitchen(Kitchen const &kitchen);
@@ -41,8 +34,8 @@ class Kitchen
     public:
         Kitchen(int cookscount, int cooktime);
         ~Kitchen(void);
-        bool    acceptPizza(Pizza const &);
 
+        bool    acceptPizza(Pizza const &);
 };
 
 #endif /* !KITCHEN_HH_ */
