@@ -5,22 +5,40 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Sun Apr 21 21:07:14 2013 Marin Alcaraz
+// Last update Sun Apr 21 22:15:51 2013 Marin Alcaraz
 //
 
 #include "Reception.hh"
 
 
 Reception::Reception(int m, int c, int r) : multiplier(m),
-cooks(c), refresh(r)
+cooks(c), refresh(r), inspecthread_(* new Thread(* this))
 {
 }
 
 Reception::~Reception()
 {
+    delete &this->inspecthread_;
 }
 
-int    Reception::load_balancer(Pizza const &p)
+void    *Reception::run()
+{
+   int  i;
+   std::vector<Kitchen*>::iterator   it;
+
+   i = 0;
+   it = this->kitchens.begin();
+   while (it != this->kitchens.end())
+   {
+       if (this->kitchens[i]->active() == false)
+           delete kitchens[i];
+       i = i + 1;
+       it++;
+   }
+   return (NULL);
+}
+
+int     Reception::load_balancer(Pizza const &p)
 {
    int  i;
    std::vector<Kitchen*>::iterator   it;
@@ -82,7 +100,7 @@ void    Reception::in_business()
         orderstr.assign(win.read_order());
         if ((orderstr != "empty") && (this->request_order(orderstr, win) != -1))
             win.output(MENU, "Thank you! Your order is being processed");
-        win.display_kitchens();
+        win.display_kitchens(kitchens);
         win.display_orders();
         win.update();
     }
