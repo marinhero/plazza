@@ -5,13 +5,13 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sun Apr 21 11:55:01 2013 ivan ignatiev
-// Last update Sun Apr 21 18:31:34 2013 ivan ignatiev
+// Last update Sun Apr 21 21:50:27 2013 ivan ignatiev
 //
 
 # include "KitchenStock.hh"
 
 KitchenStock::KitchenStock(void)
-    : threadrun_(true), regenthread_(* new Thread(* this))
+    : threadrun_(true), refreshtime_(1000), regenthread_(* new Thread(* this))
 {
     this->initIngr(PizzaFactory::ingrList());
 }
@@ -29,6 +29,11 @@ KitchenStock &KitchenStock::operator=(KitchenStock const &kitchenstock)
         this->initIngr(kitchenstock.getIngrList());
     }
     return (*this);
+}
+
+void        KitchenStock::setRefrechTime(long rt)
+{
+    this->refreshtime_ = rt;
 }
 
 KitchenStock::~KitchenStock(void)
@@ -74,7 +79,7 @@ void            *KitchenStock::run(void)
             ++this->ingrs_[it->first];
         }
         this->stocklock_.unlock();
-        sleep(1);
+        usleep(this->refreshtime_ * 1000);
     }
     return (NULL);
 }

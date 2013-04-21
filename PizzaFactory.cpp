@@ -1,11 +1,11 @@
 //
-// PizzaFactory.cpp for plazza-2016-alcara_m in /home/ignatiev/Projects/plazza-2016-alcara_m
+// PizzaFactory.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sat Apr 20 15:04:46 2013 ivan ignatiev
-// Last update Sun Apr 21 20:47:58 2013 ivan ignatiev
+// Last update Sun Apr 21 21:27:01 2013 ivan ignatiev
 //
 
 # include "PizzaFactory.hh"
@@ -116,4 +116,8 @@ ingr_stlist_t   const   &PizzaFactory::ingrList(void)
     return (PizzaFactory::ingrs_);
 }
 
-
+std::ostream &operator<<(std::ostream &ost, Pizza const &pizza)
+{
+    ost << pizza.getStrType() << " " << pizza.getStrSize() << " " << pizza.getOrderNum();
+    return (ost);
+}

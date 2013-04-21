@@ -13,6 +13,12 @@
 
 # include <vector>
 # include <string>
+# include <iostream>
+# include <fstream>
+# include <sstream>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <unistd.h>
 
 # include "Cook.hh"
 
@@ -22,6 +28,9 @@ class Kitchen
         int                 pid_;
         int                 cookscount_;
         int                 cooktime_;
+        static int          knum_;
+        std::string         pipefilein_;
+        std::string         pipefileout_;
 
         KitchenPizzas       kitchenpizzas_;
         KitchenStock        kitchenstock_;
@@ -31,8 +40,12 @@ class Kitchen
         Kitchen(void);
         Kitchen(Kitchen const &kitchen);
 
+        std::ifstream        ipipe_;
+        std::ofstream        opipe_;
+
+        void                prepareCooks(void);
     public:
-        Kitchen(int cookscount, int cooktime);
+        Kitchen(int cookscount, int cooktime, long refreshtime);
         ~Kitchen(void);
 
         bool    acceptPizza(Pizza const &);

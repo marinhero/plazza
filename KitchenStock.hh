@@ -20,6 +20,7 @@ class KitchenStock : public IThreaded
     private:
         ingr_stlist_t   ingrs_;
         bool            threadrun_;
+        long             refreshtime_;
 
         Thread          &regenthread_;
         Mutex           stocklock_;
@@ -32,6 +33,7 @@ class KitchenStock : public IThreaded
 
         ingr_stlist_t const &getIngrList(void) const;
         void                takeIngrList(ingr_stlist_t const &);
+        void                setRefrechTime(long);
         void                *run(void);
 
         ~KitchenStock(void);

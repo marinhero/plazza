@@ -13,6 +13,7 @@
 
 # include <map>
 # include <string>
+# include <iostream>
 # include <sstream>
 
 # include "Debug.hh"
@@ -46,5 +47,7 @@ class PizzaFactory
 
         ~PizzaFactory(void);
 };
+
+std::ostream &operator<<(std::ostream &ost, Pizza const &);
 
 #endif /* !PIZZAFACTORY_H_ */

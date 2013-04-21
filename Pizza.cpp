@@ -1,11 +1,11 @@
 //
-// Pizza.cpp for plazza-2016-alcara_m in /home/ignatiev/Projects/plazza-2016-alcara_m
+// Pizza.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:07:45 2013 ivan ignatiev
-// Last update Sun Apr 21 20:19:37 2013 ivan ignatiev
+// Last update Sun Apr 21 21:23:03 2013 ivan ignatiev
 //
 
 #include "Pizza.hh"
@@ -297,4 +297,3 @@ Pizza & Fantasia::clone(void) const
     TRACE(Fantasia::clone, "Make new Fantasia");
     return (* new Fantasia(this->getSize(), this->getOrderNum()));
 }
-
