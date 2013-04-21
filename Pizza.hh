@@ -14,7 +14,6 @@
 # include <iostream>
 # include <string>
 # include <map>
-# include <unistd.h>
 
 # include "Debug.hh"
 
@@ -46,14 +45,13 @@ class Pizza
         TypePizza   type_;
         TaillePizza size_;
         int         ordernum_;
-        static bool inited_;
-        static std::map<TaillePizza, std::string> sizes_;
+        std::map<TaillePizza, std::string> sizes_;
+        void init(void);
     public:
 
         Pizza(TypePizza type, TaillePizza size, int ordernum);
         Pizza(Pizza const &pizza);
 
-        static void init(void);
         virtual Pizza const &operator=(Pizza const &pizza);
 
         TypePizza   getType(void) const;

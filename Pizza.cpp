@@ -1,17 +1,14 @@
 //
-// Pizza.cpp for plazza in /home/ignatiev/Projects/plazza
+// Pizza.cpp for plazza in /home/ignati_i/projects/plazza
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:07:45 2013 ivan ignatiev
-// Last update Sun Apr 21 15:41:04 2013 ivan ignatiev
+// Last update Sun Apr 21 16:17:12 2013 ivan ignatiev
 //
 
 #include "Pizza.hh"
-
-bool                                        Pizza::inited_ = false;
-std::map<Pizza::TaillePizza, std::string>   Pizza::sizes_;
 
 Pizza::Pizza(void)
 {
@@ -26,12 +23,14 @@ Pizza::Pizza(Pizza::TypePizza type, Pizza::TaillePizza size, int ordernum = 0)
     : type_(type), size_(size), ordernum_(ordernum)
 {
     TRACE(Pizza::Pizza, "Pizza create");
+    this->init();
 }
 
 Pizza::Pizza(Pizza const &pizza)
     : type_(pizza.getType()), size_(pizza.getSize()), ordernum_(pizza.getOrderNum())
 {
     TRACE(Pizza::Pizza, "Pizza create by copy constructor");
+    this->init();
 }
 
 Pizza const &Pizza::operator=(Pizza const &pizza)
@@ -47,15 +46,11 @@ Pizza const &Pizza::operator=(Pizza const &pizza)
 
 void Pizza::init(void)
 {
-    if (!Pizza::inited_)
-    {
-        Pizza::inited_ = true;
-        Pizza::sizes_[Pizza::S] = "S";
-        Pizza::sizes_[Pizza::M] = "M";
-        Pizza::sizes_[Pizza::L] = "L";
-        Pizza::sizes_[Pizza::XL] = "XL";
-        Pizza::sizes_[Pizza::XXL] = "XXL";
-    }
+    this->sizes_[Pizza::S] = "S";
+    this->sizes_[Pizza::M] = "M";
+    this->sizes_[Pizza::L] = "L";
+    this->sizes_[Pizza::XL] = "XL";
+    this->sizes_[Pizza::XXL] = "XXL";
 }
 
 Pizza::TypePizza Pizza::getType(void) const
@@ -80,7 +75,9 @@ int Pizza::getOrderNum(void) const
 
 std::string const &Pizza::getStrSize(void) const
 {
-    return (Pizza::sizes_[this->size_]);
+    if (this->sizes_.find(this->size_) != this->sizes_.end())
+        return ( (this->sizes_.find(this->size_))->second );
+    throw new std::exception();
 }
 
 void Pizza::setCookTime(int cooktime)

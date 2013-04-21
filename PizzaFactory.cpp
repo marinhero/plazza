@@ -1,11 +1,11 @@
 //
-// PizzaFactory.cpp for plazza in /home/ignatiev/Projects/plazza
+// PizzaFactory.cpp for plazza in /home/ignati_i/projects/plazza
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sat Apr 20 15:04:46 2013 ivan ignatiev
-// Last update Sun Apr 21 15:26:36 2013 ivan ignatiev
+// Last update Sun Apr 21 16:08:42 2013 ivan ignatiev
 //
 
 # include "PizzaFactory.hh"
@@ -22,7 +22,6 @@ PizzaFactory::PizzaFactory(void)
     if (factory_count_ > 0)
         throw new std::exception();
     ++factory_count_;
-    Pizza::init();
     PizzaFactory::learn();
 }
 
