@@ -1,11 +1,11 @@
 //
-// PizzaFactory.cpp for plazza in /home/ignati_i/projects/plazza
+// PizzaFactory.cpp for plazza-2016-alcara_m in /home/ignatiev/Projects/plazza-2016-alcara_m
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sat Apr 20 15:04:46 2013 ivan ignatiev
-// Last update Sun Apr 21 16:08:42 2013 ivan ignatiev
+// Last update Sun Apr 21 20:47:58 2013 ivan ignatiev
 //
 
 # include "PizzaFactory.hh"
@@ -92,8 +92,28 @@ Pizza &PizzaFactory::createPizza(std::string const &type, std::string const &siz
     return (pizza);
 }
 
+std::string  &PizzaFactory::packPizza(Pizza const &pizza)
+{
+    std::ostringstream       oss;
+
+    oss << pizza.getStrType() << " " << pizza.getStrSize() << " " << pizza.getOrderNum();
+    return (* new std::string(oss.str()));
+}
+
+Pizza       &PizzaFactory::unpackPizza(std::string const &str)
+{
+    std::istringstream       iss(str);
+    std::string         type;
+    std::string         size;
+    int                 order;
+
+    iss >> type >> size >> order;
+    return (PizzaFactory::createPizza(type, size, order));
+}
+
 ingr_stlist_t   const   &PizzaFactory::ingrList(void)
 {
     return (PizzaFactory::ingrs_);
 }
+
 

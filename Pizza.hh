@@ -11,7 +11,6 @@
 #ifndef PIZZA_H_
 # define PIZZA_H_
 
-# include <iostream>
 # include <string>
 # include <map>
 
@@ -147,7 +146,5 @@ class Fantasia : public Pizza
 
         ~Fantasia(void);
 };
-
-std::ostream &operator<<(std::ostream &ost, Pizza const &);
 
 #endif /* !PIZZA_H_ */

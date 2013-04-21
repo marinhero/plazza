@@ -13,6 +13,7 @@
 
 # include <map>
 # include <string>
+# include <sstream>
 
 # include "Debug.hh"
 # include "Pizza.hh"
@@ -35,6 +36,10 @@ class PizzaFactory
         static void learnSize(std::string const &size, Pizza::TaillePizza);
         static void learnPizza(Pizza &);
         static Pizza &createPizza(std::string const &type, std::string const &size, int);
+
+        static Pizza &unpackPizza(std::string const &);
+        static std::string &packPizza(Pizza const &);
+
         static ingr_stlist_t const &ingrList(void);
 
         static void forget(void);

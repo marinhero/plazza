@@ -1,11 +1,11 @@
 //
-// Pizza.cpp for plazza in /home/ignati_i/projects/plazza
+// Pizza.cpp for plazza-2016-alcara_m in /home/ignatiev/Projects/plazza-2016-alcara_m
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:07:45 2013 ivan ignatiev
-// Last update Sun Apr 21 16:17:12 2013 ivan ignatiev
+// Last update Sun Apr 21 20:19:37 2013 ivan ignatiev
 //
 
 #include "Pizza.hh"
@@ -98,12 +98,6 @@ void Pizza::setSize(Pizza::TaillePizza size)
 void Pizza::setOrderNum(int ordernum)
 {
     this->ordernum_ = ordernum;
-}
-
-std::ostream &operator<<(std::ostream &ost, Pizza const &pizza)
-{
-    ost << pizza.getStrType() << " " << pizza.getStrSize() << " " << pizza.getOrderNum();
-    return (ost);
 }
 
 /* Margarita */
