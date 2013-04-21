@@ -1,11 +1,11 @@
 //
-// Graphics.cpp for plazza in /home/ignatiev/Projects/plazza
+// Graphics.cpp for plazza in /home/hero/Dropbox/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Sun Apr 21 01:33:26 2013 Marin Alcaraz
-// Last update Sun Apr 21 19:56:41 2013 ivan ignatiev
+// Last update Sun Apr 21 22:14:51 2013 Marin Alcaraz
 //
 
 #include "Graphics.hh"
@@ -109,18 +109,24 @@ std::string    Graphics::read_order() const
     return (orderstr);
 }
 
-void    Graphics::display_kitchens() const
+void    Graphics::display_kitchens(std::vector<Kitchen*> v) const
 {
-    this->output(KITCHENS, "\tKitchen #1 status: OK Resources: OK Cooks: Busy\n");
-    this->output(KITCHENS, "\tKitchen #2 status: OK Resources: OK Cooks: Busy\n");
-    this->output(KITCHENS, "\tKitchen #3 status: OK Resources: OK Cooks: Busy\n");
-    return ;
+   int  i;
+   std::vector<Kitchen*>::iterator   it;
+
+   i = 0;
+   it = v.begin();
+   while (it != v.end())
+   {
+       this->output(KITCHENS, this->kitchens[i]->getReport());
+       i = i + 1;
+       it++;
+   }
 }
 
 void    Graphics::display_orders() const
 {
-    this->output(ORDERS, "Order #1 ready\n");
-    this->output(ORDERS, "Order #2 ready\n");
+    this->output(ORDERS, "Order registered\n");
 }
 
 void    Graphics::clear(int w)
