@@ -14,6 +14,7 @@
 # include <iostream>
 # include <string>
 # include <map>
+# include <unistd.h>
 
 # include "Debug.hh"
 
@@ -38,11 +39,21 @@ class Pizza
             XL = 8,
             XXL = 16
         };
+    private:
+        Pizza(void);
 
+        int         cooktime_;
+        TypePizza   type_;
+        TaillePizza size_;
+        int         ordernum_;
+        static bool inited_;
         static std::map<TaillePizza, std::string> sizes_;
+    public:
 
         Pizza(TypePizza type, TaillePizza size, int ordernum);
         Pizza(Pizza const &pizza);
+
+        static void init(void);
         virtual Pizza const &operator=(Pizza const &pizza);
 
         TypePizza   getType(void) const;
@@ -61,14 +72,6 @@ class Pizza
         virtual Pizza &clone(void) const = 0;
 
         virtual ~Pizza(void);
-    private:
-        Pizza(void);
-        void        init();
-
-        int         cooktime_;
-        TypePizza   type_;
-        TaillePizza size_;
-        int         ordernum_;
 };
 
 class Margarita : public Pizza

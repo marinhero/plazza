@@ -5,12 +5,13 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 15:07:45 2013 ivan ignatiev
-// Last update Sun Apr 21 00:32:14 2013 ivan ignatiev
+// Last update Sun Apr 21 15:41:04 2013 ivan ignatiev
 //
 
 #include "Pizza.hh"
 
-std::map<Pizza::TaillePizza, std::string> Pizza::sizes_;
+bool                                        Pizza::inited_ = false;
+std::map<Pizza::TaillePizza, std::string>   Pizza::sizes_;
 
 Pizza::Pizza(void)
 {
@@ -25,14 +26,12 @@ Pizza::Pizza(Pizza::TypePizza type, Pizza::TaillePizza size, int ordernum = 0)
     : type_(type), size_(size), ordernum_(ordernum)
 {
     TRACE(Pizza::Pizza, "Pizza create");
-    this->init();
 }
 
 Pizza::Pizza(Pizza const &pizza)
     : type_(pizza.getType()), size_(pizza.getSize()), ordernum_(pizza.getOrderNum())
 {
     TRACE(Pizza::Pizza, "Pizza create by copy constructor");
-    this->init();
 }
 
 Pizza const &Pizza::operator=(Pizza const &pizza)
@@ -48,8 +47,9 @@ Pizza const &Pizza::operator=(Pizza const &pizza)
 
 void Pizza::init(void)
 {
-    if (Pizza::sizes_.size() == 0)
+    if (!Pizza::inited_)
     {
+        Pizza::inited_ = true;
         Pizza::sizes_[Pizza::S] = "S";
         Pizza::sizes_[Pizza::M] = "M";
         Pizza::sizes_[Pizza::L] = "L";

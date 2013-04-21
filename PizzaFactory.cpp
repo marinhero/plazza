@@ -5,13 +5,13 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Sat Apr 20 15:04:46 2013 ivan ignatiev
-// Last update Sun Apr 21 00:17:32 2013 ivan ignatiev
+// Last update Sun Apr 21 15:26:36 2013 ivan ignatiev
 //
 
 # include "PizzaFactory.hh"
 
 int                                         PizzaFactory::factory_count_ = 0;
-std::map<std::string, Pizza *>               PizzaFactory::pizzas_;
+std::map<std::string, Pizza *>              PizzaFactory::pizzas_;
 std::map<std::string, Pizza::TaillePizza>   PizzaFactory::sizes_;
 ingr_stlist_t                               PizzaFactory::ingrs_;
 
@@ -22,6 +22,7 @@ PizzaFactory::PizzaFactory(void)
     if (factory_count_ > 0)
         throw new std::exception();
     ++factory_count_;
+    Pizza::init();
     PizzaFactory::learn();
 }
 
@@ -57,7 +58,8 @@ void PizzaFactory::learn(void)
 void PizzaFactory::forget(void)
 {
     std::map<std::string, Pizza *>::iterator    it = PizzaFactory::pizzas_.begin();
-    for (;it != PizzaFactory::pizzas_.end(); ++it)
+    std::map<std::string, Pizza *>::iterator    it_end = PizzaFactory::pizzas_.end();
+    for (;it != it_end; ++it)
        delete it->second;
 }
 

@@ -31,6 +31,14 @@ class Mutex
         ~Mutex(void);
 };
 
+/*class   CondVariable
+{
+    private:
+    public:
+        CondVariable(void);
+        ~CondVariable(void);
+};*/
+
 class MutexScopeLock
 {
     private:
