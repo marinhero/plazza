@@ -1,11 +1,11 @@
 //
-// Kitchen.cpp for plazza in /home/ignatiev/Projects/plazza
+// Kitchen.cpp for plazza in /home/hero/Dropbox/plazza
 //
 // Made by ivan ignatiev
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 14:20:17 2013 ivan ignatiev
-// Last update Sat Apr 20 14:19:13 2013 ivan ignatiev
+// Last update Sun Apr 21 14:43:57 2013 Marin Alcaraz
 //
 
 #include "Kitchen.hh"
@@ -22,11 +22,11 @@ Kitchen::~Kitchen()
 
 Kitchen::Kitchen(Kitchen const &kitchen)
 {
-
+    (void) kitchen;
 }
 
 Kitchen::Kitchen(int cookscount, int cooktime)
- : cookscount_(cookscount), cooktime_(cooktime_)
+ : cookscount_(cookscount), cooktime_(cooktime)
 {
     for (int i = 0; i < cookscount; ++i)
         this->cooks_status_.push_back(rand() % 2);
@@ -36,40 +36,10 @@ Kitchen::Kitchen(int cookscount, int cooktime)
     this->ingr_status_["tomato"] = 5;
 }
 
-Kitchen const &Kitchen::operator=(Kitchen const &kitchen)
-{
-
-}
-
 bool    Kitchen::acceptPizza(Pizza const &pizza)
 {
+    (void) pizza;
     TRACE(Kitchen::acceptPizza, "Pizza accepted");
     return (rand() % 2 == 0);
 }
-
-int     Kitchen::librePlaces(void) const
-{
-    return (rand() % this->cookscount_);
-}
-
-cooks_stlist_t const    &Kitchen::getCookStatus(void) const
-{
-    return (this->cooks_status_);
-}
-
-ingr_stlist_t const     &Kitchen::getStockStatus(void) const
-{
-    return (this->ingr_status_);
-}
-
-int Kitchen::getCooksCount(void) const
-{
-    return (this->cookscount_);
-}
-
-void Kitchen::update(void)
-{
-
-}
-
 

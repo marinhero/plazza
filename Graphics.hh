@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Fri Apr 19 23:54:54 2013 Marin Alcaraz
-// Last update Sat Apr 20 23:50:50 2013 Marin Alcaraz
+// Last update Sun Apr 21 13:18:48 2013 Marin Alcaraz
 //
 
 #ifndef GRAPHICS_H
@@ -43,7 +43,7 @@ class   Graphics
         void    init_scroll(void);
         void    display_menu(void) const;
         void    output(int, const std::string) const;
-        int     read_order(void) const;
+        std::string     read_order(void) const;
         void    display_kitchens() const;
         void    display_orders() const;
         void    update(void) const;

@@ -4,8 +4,8 @@
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
-// Started on  Sat Apr 20 00:03:39 2013 Marin Alcaraz
-// Last update Sun Apr 21 00:38:45 2013 Marin Alcaraz
+// Started on  Sun Apr 21 01:33:26 2013 Marin Alcaraz
+// Last update Sun Apr 21 13:20:48 2013 Marin Alcaraz
 //
 
 #include "Graphics.hh"
@@ -94,7 +94,7 @@ void    Graphics::wipe(char *buf) const
     }
 }
 
-int    Graphics::read_order() const
+std::string    Graphics::read_order() const
 {
     char    order[1024];
 
@@ -104,25 +104,8 @@ int    Graphics::read_order() const
     std::string orderstr(order);
     if (orderstr.compare("quit") == 0)
         this->exit_screen_mode();
-    if (orderstr.empty())
-        return (-1);
-    orderstr = orderstr + ";";
-    std::istringstream input(orderstr);
-    try
-    {
-        Order   items(input);
-        this->output(MENU, "Thank you! Your order is being processed");
-        return (items.getOrderNumber());
-    }
-    catch (OrderException *e)
-    {
-        this->output(MENU, "Error: ");
-        this->output(MENU, e->what());
-        this->output(MENU, "\n");
-        return (-1);
-    }
-    this->update();
-    return(0);
+    (orderstr.empty()) ? (orderstr = "empty") : orderstr = orderstr + ";";
+    return (orderstr);
 }
 
 void    Graphics::display_kitchens() const

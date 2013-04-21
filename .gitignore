@@ -14,3 +14,6 @@
 
 #vim temporary files
 *.swp
+*.orig.*
+plazza
+a.out

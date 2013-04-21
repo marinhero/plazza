@@ -37,20 +37,12 @@ class Kitchen
 
         Kitchen(void);
         Kitchen(Kitchen const &kitchen);
-        Kitchen const &operator=(Kitchen const &);
+
     public:
         Kitchen(int cookscount, int cooktime);
-
-        bool    acceptPizza(Pizza const &);
-        int     librePlaces(void) const;
-        int     getCooksCount(void) const;
-
-        void    update(void);
-
-        cooks_stlist_t const    &getCookStatus(void) const;
-        ingr_stlist_t const     &getStockStatus(void) const;
-
         ~Kitchen(void);
+        bool    acceptPizza(Pizza const &);
+
 };
 
 #endif /* !KITCHEN_HH_ */

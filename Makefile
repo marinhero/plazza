@@ -5,7 +5,7 @@
 ## Login   <zhang_x@epitech.net>
 ##
 ## Started on  Thu Apr 18 17:02:53 2013 xiaoyan zhang
-## Last update Sun Apr 21 00:17:18 2013 Marin Alcaraz
+## Last update Sun Apr 21 14:45:31 2013 Marin Alcaraz
 ##
 
 SRC			= 		Exception.cpp 			\
@@ -14,6 +14,7 @@ SRC			= 		Exception.cpp 			\
 			  		Order.cpp 				\
 			  		Pizza.cpp 				\
 			  		PizzaFactory.cpp 		\
+			  		Kitchen.cpp 			\
 			  		main.cpp
 
 OBJ			= $(SRC:.cpp=.o)
@@ -29,7 +30,7 @@ RM			= rm -f
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -lncurses -lpanel $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME) -lncurses -lpanel
 
 clean:
 	$(RM) $(OBJ)
