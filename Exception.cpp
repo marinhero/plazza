@@ -1,11 +1,11 @@
 //
-// Exception.cpp for plazza in /home/hero/Dropbox/plazza
+// Exception.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by xiaoyan zhang
 // Login   <zhang_x@epitech.net>
 //
 // Started on  Thu Apr 18 16:53:45 2013 xiaoyan zhang
-// Last update Sat Apr 20 00:50:56 2013 Marin Alcaraz
+// Last update Sun Apr 21 22:04:15 2013 ivan ignatiev
 //
 
 #include "Exception.hh"

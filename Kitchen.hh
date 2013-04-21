@@ -19,8 +19,10 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <unistd.h>
+# include <cstdlib>
 
 # include "Cook.hh"
+# include "Exception.hh"
 
 class Kitchen
 {
@@ -29,6 +31,7 @@ class Kitchen
         int                 cookscount_;
         int                 cooktime_;
         static int          knum_;
+        int                 num_;
         std::string         pipefilein_;
         std::string         pipefileout_;
 
@@ -37,18 +40,31 @@ class Kitchen
 
         std::vector<Cook *> cooks_;
 
+        typedef void (Kitchen::*kcmd_t)(void);
+
+        std::map<std::string, kcmd_t>   cmds_;
+
         Kitchen(void);
         Kitchen(Kitchen const &kitchen);
 
         std::ifstream        ipipe_;
         std::ofstream        opipe_;
 
+        void                prepareCmd(void);
+        void                preparePipes(void);
         void                prepareCooks(void);
+        void                run(void);
+        void                quit(void);
+        void                report(void);
+        void                pizza(void);
+        void                check_active(void);
     public:
         Kitchen(int cookscount, int cooktime, long refreshtime);
         ~Kitchen(void);
 
-        bool    acceptPizza(Pizza const &);
+        bool                acceptPizza(Pizza const &);
+        std::string         &getReport(void);
+        bool                active(void);
 };
 
 #endif /* !KITCHEN_HH_ */
