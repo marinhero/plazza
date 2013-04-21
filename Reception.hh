@@ -1,11 +1,11 @@
 //
-// Reception.hh for plazza in /home/hero/Dropbox/plazza
+// Reception.hh for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:24:50 2013 Marin Alcaraz
-// Last update Sun Apr 21 21:59:57 2013 Marin Alcaraz
+// Last update Sun Apr 21 23:28:28 2013 ivan ignatiev
 //
 
 #ifndef RECEPTION_HH
@@ -25,7 +25,7 @@ class   Reception : public IThreaded
         int                         cooks;
         int                         refresh;
         Thread                      &inspecthread_;
-
+        Graphics                    &win;
 
     public:
         Reception(int, int, int);

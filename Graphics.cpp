@@ -1,11 +1,11 @@
 //
-// Graphics.cpp for plazza in /home/hero/Dropbox/plazza
+// Graphics.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Sun Apr 21 01:33:26 2013 Marin Alcaraz
-// Last update Sun Apr 21 22:14:51 2013 Marin Alcaraz
+// Last update Sun Apr 21 23:22:54 2013 ivan ignatiev
 //
 
 #include "Graphics.hh"
@@ -118,7 +118,7 @@ void    Graphics::display_kitchens(std::vector<Kitchen*> v) const
    it = v.begin();
    while (it != v.end())
    {
-       this->output(KITCHENS, this->kitchens[i]->getReport());
+       this->output(KITCHENS, (*it)->getReport());
        i = i + 1;
        it++;
    }

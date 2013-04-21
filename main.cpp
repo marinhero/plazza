@@ -1,11 +1,11 @@
 //
-// main.cpp for plazza in /home/hero/Dropbox/plazza
+// main.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:31:22 2013 Marin Alcaraz
-// Last update Sun Apr 21 21:08:46 2013 Marin Alcaraz
+// Last update Sun Apr 21 23:35:02 2013 ivan ignatiev
 //
 
 #include "Reception.hh"

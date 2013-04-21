@@ -1,24 +1,26 @@
 //
-// Reception.cpp for plazza in /home/hero/Dropbox/plazza
+// Reception.cpp for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Sun Apr 21 22:15:51 2013 Marin Alcaraz
+// Last update Sun Apr 21 23:39:20 2013 ivan ignatiev
 //
 
 #include "Reception.hh"
 
 
 Reception::Reception(int m, int c, int r) : multiplier(m),
-cooks(c), refresh(r), inspecthread_(* new Thread(* this))
+cooks(c), refresh(r), inspecthread_(* new Thread(* this)), win(* new Graphics("plazza"))
 {
 }
 
 Reception::~Reception()
 {
+    win.exit_screen_mode();
     delete &this->inspecthread_;
+    delete &win;
 }
 
 void    *Reception::run()
@@ -30,11 +32,15 @@ void    *Reception::run()
    it = this->kitchens.begin();
    while (it != this->kitchens.end())
    {
-       if (this->kitchens[i]->active() == false)
+       if ((*it)->active() == false)
+       {
+           this->kitchens.erase(it);
            delete kitchens[i];
+       }
        i = i + 1;
        it++;
    }
+   this->win.display_kitchens(this->kitchens);
    return (NULL);
 }
 
@@ -89,7 +95,6 @@ int    Reception::request_order(std::string orderstr, Graphics &win)
 
 void    Reception::in_business()
 {
-    Graphics                win("plazza");
     std::vector<int>        commandsids;
     std::string             orderstr;
     std::istringstream      items;
