@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:31:22 2013 Marin Alcaraz
-// Last update Sun Apr 21 21:08:46 2013 Marin Alcaraz
+// Last update Sun Apr 21 22:38:03 2013 Marin Alcaraz
 //
 
 #include "Reception.hh"
@@ -23,13 +23,20 @@ T   parse(const char *in)
 
 int     main(int ac, char **av)
 {
+  int   a, b, c;
+
   if (ac != 4)
        std::cout << "Usage: ./plazza mult cooks refresh_rate" << std::endl;
   else
   {
-      Reception plazza(parse<int>(av[1]),
-                        parse<int>(av[2]), parse<int>(av[3]));
+      a = parse<int>(av[1]);
+      b = parse<int>(av[2]);
+      c = parse<int>(av[3]);
 
+      if (a <= 0 && b <= 0 && c <= 0)
+          return (0);
+      Reception plazza(parse<int>(av[1]),
+              parse<int>(av[2]), parse<int>(av[3]));
       try
       {
           plazza.in_business();
@@ -39,4 +46,5 @@ int     main(int ac, char **av)
           std::cout << e->what() << std::endl;
       }
   }
+  return (0);
 }
