@@ -1,11 +1,11 @@
 //
-// Graphics.hh for plazza in /home/hero/Dropbox/plazza
+// Graphics.hh for plazza in /home/ignatiev/Projects/plazza
 //
 // Made by Marin Alcaraz
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Fri Apr 19 23:54:54 2013 Marin Alcaraz
-// Last update Sun Apr 21 22:12:52 2013 Marin Alcaraz
+// Last update Mon Apr 22 11:50:29 2013 ivan ignatiev
 //
 
 #ifndef GRAPHICS_H
@@ -32,6 +32,7 @@ class   Graphics
 {
     private:
         std::string     name;
+        std::string     orderstr;
         WINDOW          *my_wins[3];
         PANEL           *my_panels[3];
 
@@ -43,7 +44,7 @@ class   Graphics
         void    init_scroll(void);
         void    display_menu(void) const;
         void    output(int, const std::string) const;
-        std::string     read_order(void) const;
+        std::string  const   &read_order(void);
         void    display_kitchens(std::vector<Kitchen *>) const;
         void    display_orders() const;
         void    update(void) const;

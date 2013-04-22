@@ -5,7 +5,7 @@
 // Login   <ignati_i@epitech.net>
 //
 // Started on  Tue Apr 16 14:20:17 2013 ivan ignatiev
-// Last update Sun Apr 21 23:20:06 2013 ivan ignatiev
+// Last update Mon Apr 22 11:58:52 2013 ivan ignatiev
 //
 
 #include "Kitchen.hh"
@@ -38,7 +38,7 @@ Kitchen::Kitchen(Kitchen const &)
 }
 
 Kitchen::Kitchen(int cookscount, int cooktime, long refreshtime)
- : cookscount_(cookscount), cooktime_(cooktime)
+ : cookscount_(cookscount), cooktime_(cooktime), activeask_(0)
 {
     this->kitchenstock_.setRefrechTime(refreshtime);
     this->preparePipes();
@@ -141,9 +141,12 @@ void        Kitchen::pizza(void)
     std::string     pizzacode;
     std::getline(this->ipipe_, pizzacode);
     Pizza &pizza = PizzaFactory::unpackPizza(pizzacode);
-    this->acceptPizza(pizza);
+    if (this->acceptPizza(pizza)) {
+        this->opipe_ << "SUCCESS" << std::endl;
+    } else {
+        this->opipe_ << "ERROR" << std::endl;
+    }
     delete &pizza;
-    this->opipe_ << "SUCCESS" << std::endl;
 }
 
 void        Kitchen::preparePipes(void)
@@ -169,6 +172,12 @@ bool    Kitchen::active(void)
 {
     std::string         str;
 
+    if (this->activeask_ < 5)
+    {
+        ++this->activeask_;
+        return (true);
+    }
+    this->activeask_ = 0;
     this->opipe_ << "ACTIVE" << std::endl;
     this->ipipe_ >> str;
     return (str == "ACTIVE");
@@ -214,7 +223,7 @@ bool    Kitchen::acceptPizza(Pizza const &pizza)
     {
         if (this->pid_ == 0)
         {
-            if (this->kitchenpizzas_.size() > this->cookscount_)
+            if (this->kitchenpizzas_.size() >= this->cookscount_)
                 return (false);
             this->kitchenpizzas_.pushPizza(pizza);
             Cook::cookPizza();

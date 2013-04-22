@@ -5,42 +5,55 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:28:37 2013 Marin Alcaraz
-// Last update Sun Apr 21 23:39:20 2013 ivan ignatiev
+// Last update Mon Apr 22 12:01:36 2013 ivan ignatiev
 //
 
 #include "Reception.hh"
 
 
-Reception::Reception(int m, int c, int r) : multiplier(m),
-cooks(c), refresh(r), inspecthread_(* new Thread(* this)), win(* new Graphics("plazza"))
-{
+Reception::Reception(int m, int c, int r) : win(* new Graphics("plazza")) ,
+multiplier(m),
+cooks(c), refresh(r),threadrun_(true)
+ {
 }
 
 Reception::~Reception()
 {
     win.exit_screen_mode();
-    delete &this->inspecthread_;
+    this->threadrun_ = false;
     delete &win;
+    delete inspecthread_;
+    while (!this->kitchens.empty())
+    {
+        delete this->kitchens.back();
+        this->kitchens.pop_back();
+    }
 }
 
 void    *Reception::run()
 {
-   int  i;
-   std::vector<Kitchen*>::iterator   it;
+    while (this->threadrun_)
+    {
+        std::vector<Kitchen*>::iterator     it;
+        std::vector< std::vector<Kitchen *>::iterator>               rm;
 
-   i = 0;
-   it = this->kitchens.begin();
-   while (it != this->kitchens.end())
-   {
-       if ((*it)->active() == false)
-       {
-           this->kitchens.erase(it);
-           delete kitchens[i];
-       }
-       i = i + 1;
-       it++;
-   }
-   this->win.display_kitchens(this->kitchens);
+        it = this->kitchens.begin();
+        while (it != this->kitchens.end())
+        {
+            if ((*it)->active() == false)
+                rm.push_back(it);
+            it++;
+        }
+        while (!rm.empty())
+        {
+            delete *(rm.back());
+            this->kitchens.erase( rm.back() );
+            rm.pop_back();
+        }
+        this->win.display_kitchens(this->kitchens);
+        this->win.update();
+        sleep(1);
+    }
    return (NULL);
 }
 
@@ -100,14 +113,17 @@ void    Reception::in_business()
     std::istringstream      items;
 
     win.display_menu();
+    inspecthread_ = new Thread(* this);
+
     while (1)
     {
         orderstr.assign(win.read_order());
+        if (orderstr.compare(0, 4, "quit") == 0)
+            return ;
         if ((orderstr != "empty") && (this->request_order(orderstr, win) != -1))
             win.output(MENU, "Thank you! Your order is being processed");
         win.display_kitchens(kitchens);
         win.display_orders();
         win.update();
     }
-    win.exit_screen_mode();
 }

@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Wed Apr 17 15:24:50 2013 Marin Alcaraz
-// Last update Sun Apr 21 23:28:28 2013 ivan ignatiev
+// Last update Mon Apr 22 00:10:17 2013 ivan ignatiev
 //
 
 #ifndef RECEPTION_HH
@@ -21,11 +21,12 @@ class   Reception : public IThreaded
 {
     private:
         std::vector<Kitchen*>       kitchens;
+        Graphics                    &win;
         int                         multiplier;
         int                         cooks;
         int                         refresh;
-        Thread                      &inspecthread_;
-        Graphics                    &win;
+        bool                        threadrun_;
+        Thread                      *inspecthread_;
 
     public:
         Reception(int, int, int);

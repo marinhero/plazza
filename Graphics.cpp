@@ -5,7 +5,7 @@
 // Login   <alcara_m@epitech.net>
 //
 // Started on  Sun Apr 21 01:33:26 2013 Marin Alcaraz
-// Last update Sun Apr 21 23:22:54 2013 ivan ignatiev
+// Last update Mon Apr 22 11:49:46 2013 ivan ignatiev
 //
 
 #include "Graphics.hh"
@@ -94,7 +94,7 @@ void    Graphics::wipe(char *buf) const
     }
 }
 
-std::string    Graphics::read_order() const
+std::string  const   &Graphics::read_order()
 {
     char    order[1024];
     char    fmt[100] = "%[^\t]";
@@ -102,11 +102,9 @@ std::string    Graphics::read_order() const
     this->wipe(order);
     this->output(MENU, "pizza_prompt> ");
     wscanw(my_wins[MENU], fmt, order);
-    std::string orderstr(order);
-    if (orderstr.compare("quit") == 0)
-        this->exit_screen_mode();
+    this->orderstr = order;
     (orderstr.empty()) ? (orderstr = "empty") : orderstr = orderstr + ";";
-    return (orderstr);
+    return (this->orderstr);
 }
 
 void    Graphics::display_kitchens(std::vector<Kitchen*> v) const
@@ -121,7 +119,7 @@ void    Graphics::display_kitchens(std::vector<Kitchen*> v) const
        this->output(KITCHENS, (*it)->getReport());
        i = i + 1;
        it++;
-   }
+    }
 }
 
 void    Graphics::display_orders() const
@@ -137,5 +135,4 @@ void    Graphics::clear(int w)
 void    Graphics::exit_screen_mode(void) const
 {
     endwin();
-    exit(EXIT_SUCCESS);
 }

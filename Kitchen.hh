@@ -50,6 +50,8 @@ class Kitchen
         std::ifstream        ipipe_;
         std::ofstream        opipe_;
 
+        int                 activeask_;
+
         void                prepareCmd(void);
         void                preparePipes(void);
         void                prepareCooks(void);
